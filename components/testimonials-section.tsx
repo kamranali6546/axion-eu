@@ -97,16 +97,18 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={ref}
-      className="relative py-28 lg:py-36 overflow-hidden"
+      className="relative py-28 lg:py-36 overflow-hidden bg-slate-50/20"
     >
       {/* Background */}
       <div ref={sectionRef} className="absolute inset-0 pointer-events-none">
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(180deg, transparent 0%, #f5f8ff 30%, #f5f8ff 70%, transparent 100%)" }}
+          style={{ background: "linear-gradient(180deg, #ffffff 0%, #f5f8ff 50%, #ffffff 100%)" }}
         />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 blur-[120px] rounded-full opacity-60" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/5 blur-[100px] rounded-full opacity-40" />
         <motion.div
-          className="absolute top-1/4 -right-40 w-[500px] h-[500px] rounded-full opacity-[0.05]"
+          className="absolute top-1/4 -right-40 w-[500px] h-[500px] rounded-full opacity-[0.08]"
           style={{
             background: `radial-gradient(circle, ${active.color}, transparent)`,
             y: bgY,

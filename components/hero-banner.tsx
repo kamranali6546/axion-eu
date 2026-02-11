@@ -36,9 +36,16 @@ export default function HeroBanner() {
         <motion.div
           className="absolute inset-0 transition-colors duration-1000 will-change-auto"
           style={{
-            background: `radial-gradient(circle at 70% 50%, ${activeService.color}15 0%, transparent 70%)`,
+            background: `radial-gradient(circle at 70% 50%, ${activeService.color}15 0%, transparent 70%),
+                        radial-gradient(circle at 20% 40%, ${activeService.color}10 0%, transparent 50%)`,
           }}
         />
+
+        {/* Animated Mesh Gradient */}
+        <div className="absolute inset-0 opacity-[0.4] pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full blur-[120px]" style={{ background: `${activeService.color}20` }} />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px]" style={{ background: `${activeService.color}15` }} />
+        </div>
 
         {/* Animated Grid */}
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
@@ -54,16 +61,31 @@ export default function HeroBanner() {
 
         {/* Cinematic Orbs */}
         <motion.div
-          className="absolute w-[600px] h-[600px] blur-[120px] rounded-full opacity-20 pointer-events-none"
+          className="absolute w-[600px] h-[600px] blur-[120px] rounded-full opacity-25 pointer-events-none"
           animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
+            x: [0, 50, -30, 0],
+            y: [0, 30, 40, 0],
+            scale: [1, 1.1, 0.9, 1],
           }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           style={{
             background: `radial-gradient(circle, ${activeService.color}, transparent)`,
             top: "-10%",
             right: "-5%",
+          }}
+        />
+
+        <motion.div
+          className="absolute w-[400px] h-[400px] blur-[100px] rounded-full opacity-15 pointer-events-none"
+          animate={{
+            x: [0, -40, 20, 0],
+            y: [0, -20, -40, 0],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+          style={{
+            background: `radial-gradient(circle, ${activeService.color}, transparent)`,
+            bottom: "10%",
+            left: "-5%",
           }}
         />
       </div>

@@ -4,8 +4,18 @@ import { Inter, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import WhatsAppFloating from "@/components/whatsapp-floating"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
-const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" })
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: 'swap',
+  preload: true,
+})
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
+  display: 'swap',
+  preload: false, // Only preload primary font
+})
 
 export const metadata: Metadata = {
   title: "Exion Technologies - Modern Web & Digital Solutions",

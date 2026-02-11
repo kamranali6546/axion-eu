@@ -124,33 +124,45 @@ function MissionVisionSection() {
   const { ref, isInView } = useInView(0.1)
 
   return (
-    <section ref={ref} className="py-28" style={{ background: "linear-gradient(180deg, transparent, #f5f8ff, transparent)" }}>
+    <section
+      ref={ref}
+      className="relative py-28 overflow-hidden bg-white"
+    >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid md:grid-cols-2 gap-8">
           {[
-            { icon: Target, title: "Our Mission", color: "#4285F4", text: "To empower businesses with innovative, reliable, and scalable digital solutions that drive sustainable growth. We strive to be the bridge between ambitious ideas and successful digital realities, making cutting-edge technology accessible to all." },
+            { icon: Target, title: "Our Mission", color: "#DB4437", text: "To empower businesses with innovative, reliable, and scalable digital solutions that drive sustainable growth. We strive to be the bridge between ambitious ideas and successful digital realities, making cutting-edge technology accessible to all." },
             { icon: Eye, title: "Our Vision", color: "#0F9D58", text: "To become the most trusted IT partner for businesses worldwide, known for transforming industries through technology, creativity, and relentless dedication to client success. We envision a future where every business thrives in the digital landscape." },
           ].map((item, idx) => {
             const MIcon = item.icon
             return (
               <motion.div
                 key={item.title}
-                className="frost-card rounded-2xl p-8 magnetic-hover"
-                initial={{ opacity: 0, y: 50, rotateX: -8 }}
-                animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                className="rounded-[2.5rem] p-12 magnetic-hover relative overflow-hidden group"
+                style={{ backgroundColor: item.color }}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: idx * 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               >
+                <div className="absolute inset-0 pointer-events-none opacity-10">
+                  <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                    <pattern id={`mission-dots-${idx}`} width="10" height="10" patternUnits="userSpaceOnUse">
+                      <circle cx="1" cy="1" r="0.5" fill="white" />
+                    </pattern>
+                    <rect width="100%" height="100%" fill={`url(#mission-dots-${idx})`} />
+                  </svg>
+                </div>
+
                 <motion.div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-                  style={{ backgroundColor: `${item.color}10` }}
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 bg-white/20 backdrop-blur-sm border border-white/20"
                   whileHover={{ scale: 1.15, rotate: 10 }}
                 >
-                  <MIcon className="w-6 h-6" style={{ color: item.color }} />
+                  <MIcon className="w-8 h-8 text-white" />
                 </motion.div>
-                <h3 className="text-xl font-bold mb-4" style={{ color: "hsl(var(--foreground))" }}>
+                <h3 className="text-3xl font-black tracking-tighter text-white uppercase italic mb-6">
                   {item.title}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "hsl(var(--muted-foreground))" }}>
+                <p className="text-lg leading-relaxed text-white/80 font-medium italic">
                   {item.text}
                 </p>
               </motion.div>
@@ -212,18 +224,29 @@ function WhatWeDoSection() {
   const { ref, isInView } = useInView(0.1)
 
   return (
-    <section ref={ref} className="py-28" style={{ background: "linear-gradient(180deg, transparent, #f5f8ff, transparent)" }}>
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
+    <section
+      ref={ref}
+      className="relative py-28 overflow-hidden bg-[#DB4437]"
+    >
+      <div className="absolute inset-0 pointer-events-none opacity-10">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <pattern id="wwd-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#wwd-grid)" />
+        </svg>
+      </div>
+      <div className="mx-auto max-w-7xl px-4 lg:px-8 relative z-10">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight" style={{ color: "hsl(var(--foreground))" }}>
-            What We Do
+          <h2 className="text-5xl lg:text-7xl font-black tracking-tighter uppercase text-white">
+            What We <span className="text-white/20 italic">Do.</span>
           </h2>
-          <p className="mt-4 text-base max-w-2xl mx-auto" style={{ color: "hsl(var(--muted-foreground))" }}>
+          <p className="mt-6 text-xl max-w-2xl mx-auto text-white/70 font-medium italic" >
             Four pillars of expertise working together to deliver complete digital transformation.
           </p>
         </motion.div>
@@ -239,31 +262,27 @@ function WhatWeDoSection() {
             >
               <Link
                 href={`/services/${service.slug}`}
-                className="group block frost-card rounded-2xl p-6 h-full magnetic-hover"
+                className="group block bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] p-8 h-full transition-all hover:bg-white/10"
               >
-                <motion.div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center mb-5"
-                  style={{ backgroundColor: `${service.color}12` }}
-                  whileHover={{ scale: 1.15, rotate: 10 }}
-                >
-                  <Zap className="w-6 h-6" style={{ color: service.color }} />
-                </motion.div>
-                <h3 className="text-base font-bold mb-2" style={{ color: service.color }}>
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 bg-white/10 border border-white/10">
+                  <Zap className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-black tracking-tighter uppercase italic mb-4 text-white">
                   {service.title}
                 </h3>
-                <p className="text-xs leading-relaxed mb-4" style={{ color: "hsl(var(--muted-foreground))" }}>
+                <p className="text-sm leading-relaxed mb-6 text-white/60 font-medium">
                   {service.description}
                 </p>
-                <ul className="flex flex-col gap-1.5 mb-4">
+                <ul className="flex flex-col gap-2 mb-8">
                   {service.subServices.slice(0, 3).map((sub) => (
-                    <li key={sub.slug} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3 h-3 flex-shrink-0" style={{ color: service.color }} />
-                      <span className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>{sub.title}</span>
+                    <li key={sub.slug} className="flex items-center gap-3">
+                      <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 text-white" />
+                      <span className="text-[10px] font-black uppercase tracking-widest text-white/50">{sub.title}</span>
                     </li>
                   ))}
                 </ul>
-                <span className="text-xs font-semibold flex items-center gap-1 transition-all group-hover:gap-2" style={{ color: service.color }}>
-                  Learn More <ArrowRight className="w-3 h-3" />
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] flex items-center gap-3 text-white transition-all group-hover:gap-4">
+                  Initiate <ArrowRight className="w-4 h-4" />
                 </span>
               </Link>
             </motion.div>
@@ -288,10 +307,11 @@ export default function AboutPage() {
       <Header />
       <main className="page-enter">
         {/* Hero */}
-        <section ref={heroRef} className="relative h-[80vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-white">
+        <section ref={heroRef} className="relative h-[80vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-slate-50/20">
           {/* Cinematic Background Gradient */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(0,0,0,0.03),transparent_70%)]" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(66,133,244,0.05),transparent_70%)]" />
+            <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full opacity-40 animate-pulse" />
           </div>
 
           <div className="relative z-10 mx-auto max-w-7xl px-4 text-center">

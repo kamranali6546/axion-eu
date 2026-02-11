@@ -191,87 +191,98 @@ export default function Header() {
                   <AnimatePresence>
                     {megaOpen && (
                       <motion.div
-                        className="absolute top-full -left-1/2 -translate-x-1/2 pt-6 z-50"
-                        initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 10, scale: 0.98, pointerEvents: "none" }}
+                        className="fixed inset-x-0 top-24 z-50 px-4 lg:px-8"
+                        onMouseEnter={handleMegaEnter}
+                        onMouseLeave={handleMegaLeave}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10, pointerEvents: "none" }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
                       >
-                        <div className="w-[calc(100vw-2rem)] max-w-5xl overflow-hidden rounded-2xl border border-border/40 bg-background/95 backdrop-blur-xl shadow-2xl ring-1 ring-black/5">
-                          <div className="flex flex-col md:flex-row h-auto md:max-h-[80vh] min-h-[400px]">
-                            {/* Sidebar - Service List */}
-                            <div className="w-full md:w-72 border-b md:border-b-0 md:border-r border-border/40 bg-muted/30 p-4 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-y-auto no-scrollbar">
-                              {services.map((service, idx) => (
-                                <ServiceSidebarItem
-                                  key={service.slug}
-                                  service={service}
-                                  idx={idx}
-                                  isActive={idx === activeServiceIdx}
-                                  onMouseEnter={() => setActiveServiceIdx(idx)}
-                                  Icon={serviceIcons[service.slug] || Code2}
-                                />
-                              ))}
-                            </div>
+                        <div className="mx-auto max-w-7xl">
+                          <div className="overflow-hidden rounded-2xl border border-border/40 bg-background/95 backdrop-blur-xl shadow-2xl ring-1 ring-black/5">
+                            <div className="flex flex-col lg:flex-row max-h-[calc(100vh-8rem)]">
+                              {/* Sidebar - Service List */}
+                              <div className="w-full lg:w-72 shrink-0 border-b lg:border-b-0 lg:border-r border-border/40 bg-muted/30">
+                                <div className="p-4 flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-y-auto lg:max-h-[calc(100vh-8rem)] no-scrollbar">
+                                  {services.map((service, idx) => (
+                                    <ServiceSidebarItem
+                                      key={service.slug}
+                                      service={service}
+                                      idx={idx}
+                                      isActive={idx === activeServiceIdx}
+                                      onMouseEnter={() => setActiveServiceIdx(idx)}
+                                      Icon={serviceIcons[service.slug] || Code2}
+                                    />
+                                  ))}
+                                </div>
+                              </div>
 
-                            {/* Main Content Area */}
-                            <div className="flex-1 p-6 md:p-8 flex flex-col overflow-y-auto">
-                              <AnimatePresence mode="wait">
-                                <motion.div
-                                  key={activeServiceIdx}
-                                  initial={{ opacity: 0, x: 20 }}
-                                  animate={{ opacity: 1, x: 0 }}
-                                  exit={{ opacity: 0, x: -20 }}
-                                  transition={{ duration: 0.2 }}
-                                  className="h-full flex flex-col"
-                                >
-                                  {/* Header */}
-                                  <div className="flex flex-col sm:flex-row items-start justify-between gap-4 mb-8 pb-6 border-b border-border/40">
-                                    <div className="flex gap-4">
-                                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center`} style={{ backgroundColor: `${activeService.color}15`, color: activeService.color }}>
-                                        <ActiveIcon className="w-6 h-6" />
-                                      </div>
-                                      <div>
-                                        <h3 className="text-xl font-bold mb-1">{activeService.title}</h3>
-                                        <p className="text-sm text-muted-foreground max-w-sm">{activeService.tagline}</p>
-                                      </div>
-                                    </div>
-                                    <Link
-                                      href={`/services/${activeService.slug}`}
-                                      className="group flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
-                                      style={{ color: activeService.color, backgroundColor: `${activeService.color}10` }}
+                              {/* Main Content Area */}
+                              <div className="flex-1 overflow-y-auto lg:max-h-[calc(100vh-8rem)]">
+                                <div className="p-6 lg:p-8">
+                                  <AnimatePresence mode="wait">
+                                    <motion.div
+                                      key={activeServiceIdx}
+                                      initial={{ opacity: 0, x: 20 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: -20 }}
+                                      transition={{ duration: 0.2 }}
+                                      className="flex flex-col"
                                     >
-                                      View All Solutions
-                                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                                    </Link>
-                                  </div>
+                                      {/* Header */}
+                                      <div className="flex flex-col sm:flex-row items-start justify-between gap-4 mb-8 pb-6 border-b border-border/40">
+                                        <div className="flex gap-4">
+                                          <div
+                                            className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
+                                            style={{ backgroundColor: `${activeService.color}15`, color: activeService.color }}
+                                          >
+                                            <ActiveIcon className="w-6 h-6" />
+                                          </div>
+                                          <div>
+                                            <h3 className="text-xl font-bold mb-1">{activeService.title}</h3>
+                                            <p className="text-sm text-muted-foreground max-w-md">{activeService.tagline}</p>
+                                          </div>
+                                        </div>
+                                        <Link
+                                          href={`/services/${activeService.slug}`}
+                                          className="group flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-lg transition-colors whitespace-nowrap shrink-0"
+                                          style={{ color: activeService.color, backgroundColor: `${activeService.color}10` }}
+                                        >
+                                          View All
+                                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                        </Link>
+                                      </div>
 
-                                  {/* Sub-services Grid */}
-                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    {activeService.subServices.map((sub, subIdx) => (
-                                      <SubServiceItem
-                                        key={sub.slug}
-                                        sub={{ ...sub, parentSlug: activeService.slug }}
-                                        subIdx={subIdx}
-                                        activeColor={activeService.color}
-                                      />
-                                    ))}
-                                  </div>
+                                      {/* Sub-services Grid */}
+                                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                        {activeService.subServices.map((sub, subIdx) => (
+                                          <SubServiceItem
+                                            key={sub.slug}
+                                            sub={{ ...sub, parentSlug: activeService.slug }}
+                                            subIdx={subIdx}
+                                            activeColor={activeService.color}
+                                          />
+                                        ))}
+                                      </div>
 
-                                  {/* Bottom Action Bar */}
-                                  <div className="mt-8 md:mt-auto pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                                    <p className="text-xs text-muted-foreground font-medium text-center sm:text-left">
-                                      Need a custom solution for your business?
-                                    </p>
-                                    <Link
-                                      href="/contact"
-                                      className="w-full sm:w-auto text-center text-xs font-bold px-6 py-2.5 rounded-lg text-white transition-opacity"
-                                      style={{ backgroundColor: activeService.color }}
-                                    >
-                                      Talk to an Expert
-                                    </Link>
-                                  </div>
-                                </motion.div>
-                              </AnimatePresence>
+                                      {/* Bottom Action Bar */}
+                                      <div className="pt-6 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                        <p className="text-xs text-muted-foreground font-medium text-center sm:text-left">
+                                          Need a custom solution for your business?
+                                        </p>
+                                        <Link
+                                          href="/contact"
+                                          className="w-full sm:w-auto text-center text-xs font-bold px-6 py-2.5 rounded-lg text-white transition-opacity hover:opacity-90 shrink-0"
+                                          style={{ backgroundColor: activeService.color }}
+                                        >
+                                          Talk to Expert
+                                        </Link>
+                                      </div>
+                                    </motion.div>
+                                  </AnimatePresence>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>

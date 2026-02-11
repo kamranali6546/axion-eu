@@ -34,9 +34,10 @@ export default function ServicesPage() {
       <Header />
       <main className="bg-[#FAFAFA] min-h-screen selection:bg-black selection:text-white">
         {/* Editorial Hero */}
-        <section ref={heroRef} className="relative h-[70vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-white">
+        <section ref={heroRef} className="relative h-[70vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-slate-50/20">
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(0,0,0,0.03),transparent_70%)]" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(66,133,244,0.05),transparent_70%)]" />
+            <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full opacity-40 animate-pulse" />
           </div>
 
           <motion.div
@@ -71,7 +72,11 @@ export default function ServicesPage() {
 
 function AllServicesGrid() {
   return (
-    <section className="py-48 bg-[#FAFAFA]">
+    <section className="relative py-48 overflow-hidden bg-white">
+      {/* Visual background cues */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-40">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full h-[1000px] bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.01),transparent_70%)]" />
+      </div>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-24">
           {services.map((service, idx) => (

@@ -33,10 +33,11 @@ export default function ProfilesPage() {
 
 function HeroSection() {
   return (
-    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-white">
+    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-slate-50/20">
       {/* Cinematic Background Gradient */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(0,0,0,0.03),transparent_70%)]" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(66,133,244,0.05),transparent_70%)]" />
+        <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full opacity-40 animate-pulse" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
@@ -92,7 +93,17 @@ function ExpertChapter({ member, index }: { member: any; index: number }) {
     <section
       ref={containerRef}
       className={`relative min-h-[110vh] py-32 flex items-center overflow-hidden ${index !== teamMembers.length - 1 ? 'border-b border-black/5' : ''}`}
+      style={{
+        backgroundColor: index % 2 === 1 ? `${member.color}05` : 'transparent'
+      }}
     >
+      {/* Background decoration for odd sections */}
+      {index % 2 === 1 && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-primary/5 blur-[100px] rounded-full opacity-30" />
+          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/5 blur-[100px] rounded-full opacity-20" />
+        </div>
+      )}
       <div className="max-w-7xl mx-auto px-4 lg:px-8 w-full">
         <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-16 lg:gap-32`}>
 
@@ -201,19 +212,28 @@ function ExpertChapter({ member, index }: { member: any; index: number }) {
 
 function PhilosophySection() {
   return (
-    <section className="py-48 bg-white border-t border-black/5">
-      <div className="max-w-7xl mx-auto px-4 text-center">
+    <section className="relative py-48 overflow-hidden bg-[#F4B400]">
+      {/* Background decoration */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <pattern id="phi-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1" fill="white" />
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#phi-dots)" />
+        </svg>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
         >
-          <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-black mb-12">
-            Collective <span className="text-black/10 italic">Intelligence.</span>
+          <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-12">
+            Collective <span className="text-white/20 italic">Intelligence.</span>
           </h2>
           <div className="max-w-3xl mx-auto">
-            <p className="text-2xl md:text-3xl text-black/50 font-medium leading-[1.4]">
+            <p className="text-2xl md:text-3xl text-white/80 font-medium leading-[1.4] italic">
               We don't just hire specialists; we curate architects of change. Our Collective is built on the belief that peak technical mastery combined with absolute transparency creates bulletproof digital ecosystems.
             </p>
           </div>

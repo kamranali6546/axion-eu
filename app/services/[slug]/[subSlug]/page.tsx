@@ -42,9 +42,10 @@ export default function SubServicePage() {
       <Header />
       <main className="bg-[#FAFAFA] min-h-screen selection:bg-black selection:text-white">
         {/* Editorial Hero */}
-        <section ref={heroRef} className="relative h-[70vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-white">
+        <section ref={heroRef} className="relative h-[70vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-slate-50/20">
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(0,0,0,0.03),transparent_70%)]" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(66,133,244,0.05),transparent_70%)]" />
+            <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full opacity-40 animate-pulse" />
           </div>
 
           <motion.div
@@ -136,15 +137,26 @@ function DetailsSection({ subService, service }: { subService: any; service: any
 
 function ToolsSection({ subService, color }: { subService: any; color: string }) {
   return (
-    <section className="py-48 bg-white border-t border-black/5 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 mb-24 text-center">
-        <span className="text-[10px] uppercase font-black tracking-[0.6em] text-black/20 mb-8 block">Technical Ecosystem</span>
-        <h2 className="text-5xl font-black text-black tracking-tighter uppercase italic opacity-10">Advanced Stack</h2>
+    <section
+      className="relative py-48 overflow-hidden"
+      style={{ backgroundColor: color }}
+    >
+      <div className="absolute inset-0 pointer-events-none opacity-10">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <pattern id="subservice-tools-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+            <circle cx="1.5" cy="1.5" r="1.5" fill="white" />
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#subservice-tools-grid)" />
+        </svg>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 mb-24 text-center relative z-10">
+        <span className="text-[10px] uppercase font-black tracking-[0.6em] text-white/40 mb-8 block">Technical Ecosystem</span>
+        <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase italic opacity-10 leading-none">Advanced Stack</h2>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-8 max-w-4xl mx-auto px-4">
+      <div className="flex flex-wrap justify-center gap-8 max-w-4xl mx-auto px-4 relative z-10">
         {subService.tools.map((tool: string) => (
-          <div key={tool} className="px-8 py-4 rounded-2xl border border-black/5 bg-[#FAFAFA] text-[10px] font-black uppercase tracking-[0.3em] text-black/60 hover:bg-black hover:text-white transition-all cursor-default shadow-sm">
+          <div key={tool} className="px-10 py-6 rounded-[1.5rem] border border-white/20 bg-white/10 backdrop-blur-md text-[10px] font-black uppercase tracking-[0.4em] text-white hover:bg-black hover:text-white transition-all cursor-default shadow-xl font-sans">
             {tool}
           </div>
         ))}
@@ -155,7 +167,7 @@ function ToolsSection({ subService, color }: { subService: any; color: string })
 
 function CTAFooter({ service }: { service: any }) {
   return (
-    <section className="py-64 bg-[#FAFAFA] border-t border-black/5 flex flex-col items-center text-center px-4">
+    <section className="py-64 bg-white border-t border-black/5 flex flex-col items-center text-center px-4">
       <h2 className="text-6xl md:text-9xl font-black tracking-tighter uppercase text-black mb-16">
         Ready to <br /><span className="text-black/10 italic">Deploy?</span>
       </h2>

@@ -40,9 +40,10 @@ export default function ServicePage() {
       <Header />
       <main className="bg-[#FAFAFA] min-h-screen selection:bg-black selection:text-white">
         {/* Editorial Hero */}
-        <section ref={heroRef} className="relative h-[70vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-white">
+        <section ref={heroRef} className="relative h-[70vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-slate-50/20">
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(0,0,0,0.03),transparent_70%)]" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(0,0,0,0.05),transparent_70%)]" />
+            <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full opacity-40 animate-pulse" />
           </div>
 
           <motion.div
@@ -130,18 +131,29 @@ function SubServicesSection({ service }: { service: any }) {
 
 function ProcessSection({ service }: { service: any }) {
   return (
-    <section className="py-48 bg-white border-y border-black/5">
-      <div className="max-w-7xl mx-auto px-4 text-center mb-32">
-        <span className="text-[10px] uppercase font-black tracking-[0.6em] text-primary/80 mb-8 block">Execution Framework</span>
-        <h2 className="text-5xl md:text-7xl font-black text-black tracking-tighter uppercase italic opacity-10">Strategic Workflow</h2>
+    <section
+      className="relative py-48 overflow-hidden"
+      style={{ backgroundColor: service.color }}
+    >
+      <div className="absolute inset-0 pointer-events-none opacity-10">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <pattern id="service-process-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#service-process-grid)" />
+        </svg>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 text-center mb-32 relative z-10">
+        <span className="text-[10px] uppercase font-black tracking-[0.6em] text-white/50 mb-8 block">Execution Framework</span>
+        <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase italic opacity-10 leading-none">Strategic Workflow</h2>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
         {service.process.map((step: any, idx: number) => (
-          <div key={step.title} className="relative space-y-8 p-8 block">
-            <div className="text-8xl font-black text-black/[0.03] absolute -top-8 -left-4 select-none">{idx + 1}</div>
-            <h3 className="text-2xl font-black text-black uppercase tracking-tighter relative z-10">{step.title}</h3>
-            <p className="text-lg text-black/40 font-medium leading-relaxed relative z-10">{step.description}</p>
+          <div key={step.title} className="relative space-y-8 p-10 block bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] hover:bg-white/10 transition-all duration-500">
+            <div className="text-8xl font-black text-white/[0.05] absolute -top-8 -left-4 select-none">{idx + 1}</div>
+            <h3 className="text-2xl font-black text-white uppercase tracking-tighter relative z-10">{step.title}</h3>
+            <p className="text-lg text-white/60 font-medium leading-relaxed relative z-10 italic">{step.description}</p>
           </div>
         ))}
       </div>
@@ -157,7 +169,7 @@ function FAQSection({ service }: { service: any }) {
   ]
 
   return (
-    <section className="py-48 bg-[#FAFAFA]">
+    <section className="py-48 bg-white">
       <div className="max-w-3xl mx-auto px-4">
         <div className="text-center mb-24">
           <span className="text-[10px] uppercase font-black tracking-[0.6em] text-black/20 mb-8 block">FAQ Hub</span>

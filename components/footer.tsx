@@ -22,7 +22,7 @@ export default function Footer() {
   }, [])
 
   return (
-    <footer className="relative bg-background pt-24 pb-12 overflow-hidden border-t border-border/40">
+    <footer className="relative bg-slate-50 pt-24 pb-12 overflow-hidden border-t border-slate-200/60">
       {/* Cinematic Background Typography */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
         <span className="text-[20vw] font-black tracking-tighter text-foreground/[0.03] leading-none uppercase">
@@ -69,8 +69,9 @@ export default function Footer() {
               <Image
                 src="/logo.png"
                 alt="Axion Technologies"
-                fill
-                className="object-contain brightness-0 invert"
+                width={100}
+                height={100}
+                className="object-contain"
               />
             </Link>
             <p className="text-sm leading-relaxed text-muted-foreground max-w-sm">

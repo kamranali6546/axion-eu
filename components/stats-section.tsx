@@ -42,8 +42,9 @@ export default function StatsSection() {
   const { ref, isInView } = useInView(0.2)
 
   return (
-    <section ref={ref} className="relative py-20 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 50%, #f0faf4 100%)" }} />
+    <section ref={ref} className="relative py-20 lg:py-32 overflow-hidden bg-slate-950">
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 0% 0%, #0f172a 0%, #020617 100%)" }} />
+      <div className="absolute inset-0 opacity-20" style={{ background: "radial-gradient(circle at 100% 100%, #1e293b 0%, transparent 50%)" }} />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
@@ -53,15 +54,15 @@ export default function StatsSection() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="frost-card rounded-2xl p-6 lg:p-8 text-center"
+              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 lg:p-8 text-center"
             >
               <div
-                className="text-3xl lg:text-5xl font-bold mb-2 tabular-nums"
+                className="text-3xl lg:text-5xl font-extrabold mb-2 tabular-nums"
                 style={{ color: stat.color }}
               >
                 <AnimatedCounter target={stat.value} suffix={stat.suffix} isInView={isInView} />
               </div>
-              <p className="text-xs lg:text-sm font-medium" style={{ color: "hsl(var(--muted-foreground))" }}>
+              <p className="text-xs lg:text-sm font-bold tracking-tight text-white/60 uppercase">
                 {stat.label}
               </p>
             </motion.div>

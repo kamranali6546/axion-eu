@@ -22,7 +22,22 @@ export default function TechStackSection() {
   const { ref, isInView } = useInView(0.1)
 
   return (
-    <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
+    <section
+      ref={ref}
+      className="relative py-24 lg:py-32 overflow-hidden bg-gradient-to-br from-amber-50 via-white to-orange-50/40"
+    >
+      {/* Elegant background graphics */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Gradient orbs */}
+        <div className="absolute top-0 left-0 w-[700px] h-[700px] bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-tr from-yellow-500/10 to-amber-500/10 rounded-full blur-3xl" />
+
+        {/* Hexagon pattern */}
+        <svg className="absolute top-1/3 right-1/3 w-96 h-96 opacity-[0.02]" viewBox="0 0 200 200">
+          <path d="M100 10 L170 50 L170 130 L100 170 L30 130 L30 50 Z" fill="none" stroke="currentColor" strokeWidth="0.5" />
+          <path d="M100 30 L150 60 L150 120 L100 150 L50 120 L50 60 Z" fill="none" stroke="currentColor" strokeWidth="0.5" />
+        </svg>
+      </div>
       <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
         {/* Section header */}
         <header className="mb-24 lg:mb-32">
@@ -34,7 +49,7 @@ export default function TechStackSection() {
             className="flex flex-col items-center text-center"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 backdrop-blur-sm border border-border/40 mb-8">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <div className="w-1.5 h-1.5 rounded-full bg-amber-600 animate-pulse" />
               <span className="text-[10px] uppercase tracking-[0.3em] font-black text-muted-foreground">
                 Technological Foundation
               </span>
@@ -61,10 +76,10 @@ export default function TechStackSection() {
             {[...technologies, ...technologies].map((tech, idx) => (
               <div
                 key={`${tech.name}-${idx}`}
-                className="flex-shrink-0 frost-card rounded-xl px-6 py-4 flex items-center gap-3"
+                className="flex-shrink-0 bg-white/80 backdrop-blur-sm border border-black/5 rounded-xl px-6 py-4 flex items-center gap-3 transition-all hover:border-amber-500/30 hover:shadow-md"
               >
-                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: tech.color }} />
-                <span className="text-sm font-medium whitespace-nowrap" style={{ color: "hsl(var(--foreground))" }}>
+                <div className="w-3 h-3 rounded-full bg-amber-600" />
+                <span className="text-sm font-black uppercase tracking-widest text-black whitespace-nowrap">
                   {tech.name}
                 </span>
               </div>
@@ -83,10 +98,10 @@ export default function TechStackSection() {
             {[...[...technologies].reverse(), ...[...technologies].reverse()].map((tech, idx) => (
               <div
                 key={`rev-${tech.name}-${idx}`}
-                className="flex-shrink-0 frost-card rounded-xl px-6 py-4 flex items-center gap-3"
+                className="flex-shrink-0 bg-white/80 backdrop-blur-sm border border-black/5 rounded-xl px-6 py-4 flex items-center gap-3 transition-all hover:border-amber-500/30 hover:shadow-md"
               >
-                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: tech.color }} />
-                <span className="text-sm font-medium whitespace-nowrap" style={{ color: "hsl(var(--foreground))" }}>
+                <div className="w-3 h-3 rounded-full bg-amber-600" />
+                <span className="text-sm font-black uppercase tracking-widest text-black whitespace-nowrap">
                   {tech.name}
                 </span>
               </div>
@@ -105,14 +120,14 @@ export default function TechStackSection() {
             {/* Circuit lines */}
             <motion.path
               d="M0 50 L100 50 L130 20 L200 20 L230 50 L350 50 L380 80 L450 80 L480 50 L600 50"
-              stroke="#4285F4" strokeWidth="1.5" fill="none" opacity="0.3"
+              stroke="#f59e0b" strokeWidth="1.5" fill="none" opacity="0.3"
               initial={{ pathLength: 0 }}
               animate={isInView ? { pathLength: 1 } : {}}
               transition={{ duration: 3 }}
             />
             <motion.path
               d="M0 30 L80 30 L110 60 L180 60 L210 30 L320 30 L350 70 L430 70 L460 30 L600 30"
-              stroke="#0F9D58" strokeWidth="1.5" fill="none" opacity="0.2"
+              stroke="#f59e0b" strokeWidth="1.5" fill="none" opacity="0.15"
               initial={{ pathLength: 0 }}
               animate={isInView ? { pathLength: 1 } : {}}
               transition={{ duration: 3, delay: 0.3 }}
@@ -122,7 +137,7 @@ export default function TechStackSection() {
               <motion.circle
                 key={cx}
                 cx={cx} cy={[20, 50, 80, 50][i]} r="4"
-                fill={["#4285F4", "#DB4437", "#F4B400", "#0F9D58"][i]}
+                fill="#f59e0b"
                 initial={{ scale: 0 }}
                 animate={isInView ? { scale: [0, 1.5, 1] } : {}}
                 transition={{ delay: 1 + i * 0.3, duration: 0.5 }}
@@ -130,7 +145,7 @@ export default function TechStackSection() {
             ))}
             {/* Flowing dot */}
             <motion.circle
-              r="3" fill="#4285F4"
+              r="3" fill="#f59e0b"
               animate={isInView ? {
                 cx: [0, 100, 130, 200, 230, 350, 380, 450, 480, 600],
                 cy: [50, 50, 20, 20, 50, 50, 80, 80, 50, 50],

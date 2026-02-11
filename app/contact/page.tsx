@@ -27,7 +27,10 @@ function ContactForm() {
   ]
 
   return (
-    <section ref={ref} className="py-28">
+    <section ref={ref} className="relative py-28 overflow-hidden bg-secondary/10">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-dev/5 blur-[100px] rounded-full" />
+      </div>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid lg:grid-cols-5 gap-12">
           {/* Contact info */}
@@ -259,51 +262,57 @@ function FAQSection() {
   ]
 
   return (
-    <section ref={ref} className="py-28" style={{ background: "linear-gradient(180deg, transparent, #f5f8ff, transparent)" }}>
-      <div className="mx-auto max-w-3xl px-4 lg:px-8">
+    <section ref={ref} className="py-32 relative overflow-hidden bg-[#0F9D58]">
+      <div className="absolute inset-0 pointer-events-none opacity-10">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <pattern id="faq-dots" width="30" height="30" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1.5" fill="white" />
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#faq-dots)" />
+        </svg>
+      </div>
+      <div className="mx-auto max-w-4xl px-4 lg:px-8 relative z-10">
         <motion.div
-          className="text-center mb-14"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <motion.span
-            className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase mb-4 px-5 py-2 rounded-full frost"
-            style={{ color: "hsl(var(--muted-foreground))" }}
+          <motion.div
+            className="inline-flex items-center gap-2 text-[10px] font-black tracking-[0.4em] uppercase mb-8 px-6 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.2 }}
           >
-            <MessageSquare className="w-3.5 h-3.5" />
-            FAQ
-          </motion.span>
-          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight" style={{ color: "hsl(var(--foreground))" }}>
-            Frequently Asked Questions
+            <MessageSquare className="w-4 h-4" />
+            Operational Queries
+          </motion.div>
+          <h2 className="text-5xl lg:text-7xl font-black tracking-tighter uppercase text-white">
+            Common <span className="text-white/20 italic">Intelligence.</span>
           </h2>
         </motion.div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           {faqs.map((faq, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.15 + idx * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="frost-card rounded-xl overflow-hidden"
+              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] overflow-hidden hover:bg-white/10 transition-colors"
             >
               <motion.button
                 onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left"
-                whileHover={{ backgroundColor: "rgba(66,133,244,0.02)" }}
+                className="w-full flex items-center justify-between px-10 py-8 text-left"
               >
-                <span className="text-sm font-semibold pr-4" style={{ color: "hsl(var(--foreground))" }}>
+                <span className="text-xl font-black uppercase tracking-tighter text-white pr-4">
                   {faq.q}
                 </span>
                 <motion.div
                   animate={{ rotate: openIdx === idx ? 90 : 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  <ArrowRight className="w-4 h-4 flex-shrink-0" style={{ color: "#4285F4" }} />
+                  <ArrowRight className="w-5 h-5 text-white/40" />
                 </motion.div>
               </motion.button>
               <AnimatePresence>
@@ -315,8 +324,8 @@ function FAQSection() {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-5">
-                      <p className="text-sm leading-relaxed" style={{ color: "hsl(var(--muted-foreground))" }}>
+                    <div className="px-10 pb-8">
+                      <p className="text-lg leading-relaxed text-white/70 italic font-medium">
                         {faq.a}
                       </p>
                     </div>
@@ -345,10 +354,11 @@ export default function ContactPage() {
       <Header />
       <main className="page-enter">
         {/* Hero */}
-        <section ref={heroRef} className="relative h-[80vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-white">
+        <section ref={heroRef} className="relative h-[80vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-slate-50/20">
           {/* Cinematic Background Gradient */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(0,0,0,0.03),transparent_70%)]" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(66,133,244,0.05),transparent_70%)]" />
+            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full opacity-30" />
           </div>
 
           <div className="relative z-10 mx-auto max-w-7xl px-4 text-center">

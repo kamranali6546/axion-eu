@@ -75,17 +75,23 @@ export default function ProfilesSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
 
   return (
-    <section ref={sectionRef} className="relative py-32 lg:py-48 overflow-hidden bg-background">
-      {/* Cinematic Background Elements */}
+    <section ref={sectionRef} className="relative py-32 lg:py-48 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50/40">
+      {/* Elegant Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-secondary/5 blur-[150px] rounded-full" />
+        {/* Gradient orbs */}
+        <div className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-gradient-to-br from-blue-500/10 to-indigo-500/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-0 right-1/4 w-[800px] h-[800px] bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 blur-[150px] rounded-full" />
 
-        {/* Animated Background Line */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.05]" xmlns="http://www.w3.org/2000/svg">
-          <pattern id="profile-grid" width="100" height="100" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1" fill="currentColor" />
-          </pattern>
+        {/* Animated Background Pattern */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.02]" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="profile-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+              <circle cx="30" cy="30" r="1" fill="currentColor" />
+              <circle cx="0" cy="0" r="1" fill="currentColor" />
+              <circle cx="60" cy="0" r="1" fill="currentColor" />
+              <circle cx="0" cy="60" r="1" fill="currentColor" />
+            </pattern>
+          </defs>
           <rect width="100%" height="100%" fill="url(#profile-grid)" />
         </svg>
       </div>
@@ -101,7 +107,7 @@ export default function ProfilesSection() {
             className="flex flex-col items-center text-center"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 backdrop-blur-sm border border-border/40 mb-8">
-              <GraduationCap className="w-4 h-4 text-primary" />
+              <GraduationCap className="w-4 h-4 text-blue-600" />
               <span className="text-[10px] uppercase tracking-[0.3em] font-black text-muted-foreground">
                 The Architecture of Excellence
               </span>
@@ -134,15 +140,16 @@ export default function ProfilesSection() {
         >
           <Link
             href="/profiles"
-            className="group relative px-10 py-5 rounded-2xl bg-foreground text-background font-black uppercase text-xs tracking-widest overflow-hidden transition-all hover:scale-105 active:scale-95"
+            className="group relative px-10 py-5 rounded-2xl bg-blue-600 text-white font-black uppercase text-xs tracking-widest overflow-hidden transition-all hover:scale-105 active:scale-95"
           >
-            <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+            <div className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             <span className="relative z-10 flex items-center gap-3 transition-colors group-hover:text-white">
               SQUAD DIRECTORY
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </span>
           </Link>
         </motion.div>
+
       </div>
     </section>
   )

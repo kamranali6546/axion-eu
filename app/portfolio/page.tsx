@@ -35,7 +35,11 @@ const projects = [
 
 function ProjectGrid() {
   return (
-    <section className="py-24 space-y-32">
+    <section className="relative py-24 space-y-32 overflow-hidden bg-white">
+      {/* Visual background cues */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-40">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full h-[1000px] bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.01),transparent_70%)]" />
+      </div>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {projects.map((project, idx) => (
           <motion.div
@@ -136,10 +140,11 @@ export default function PortfolioPage() {
       <Header />
       <main className="page-enter">
         {/* Hero */}
-        <section ref={heroRef} className="relative h-[80vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-white">
+        <section ref={heroRef} className="relative h-[80vh] flex items-center justify-center overflow-hidden border-b border-black/5 bg-slate-50/20">
           {/* Cinematic Background Gradient */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(0,0,0,0.03),transparent_70%)]" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(66,133,244,0.05),transparent_70%)]" />
+            <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full opacity-40 animate-pulse" />
           </div>
 
           <div className="relative z-10 mx-auto max-w-7xl px-4 text-center">
@@ -178,31 +183,38 @@ export default function PortfolioPage() {
         <ProjectGrid />
 
         {/* Clients marquee */}
-        <section className="py-20 overflow-hidden">
-          <div className="mx-auto max-w-7xl px-4 lg:px-8 text-center mb-14">
+        <section className="py-32 overflow-hidden bg-[#4285F4] relative">
+          <div className="absolute inset-0 pointer-events-none opacity-10">
+            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <pattern id="brands-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="1" fill="white" />
+              </pattern>
+              <rect width="100%" height="100%" fill="url(#brands-dots)" />
+            </svg>
+          </div>
+          <div className="mx-auto max-w-7xl px-4 lg:px-8 text-center mb-16 relative z-10">
             <motion.h2
-              className="text-2xl lg:text-3xl font-bold"
-              style={{ color: "hsl(var(--foreground))" }}
+              className="text-4xl lg:text-6xl font-black tracking-tighter uppercase text-white"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              Trusted by Leading Brands
+              Trusted by <span className="text-white/20 italic">Industry Leaders.</span>
             </motion.h2>
           </div>
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden z-10">
             <div
-              className="flex gap-6 items-center"
+              className="flex gap-8 items-center"
               style={{ animation: "marquee 25s linear infinite", width: "max-content" }}
             >
               {[...Array(2)].flatMap((_, setIdx) =>
                 ["TechNova", "CloudFirst", "GreenLeaf", "DataPrime", "ShopWave", "BrandHub", "MediaFlux", "FinEdge"].map((name) => (
                   <motion.div
                     key={`${setIdx}-${name}`}
-                    className="frost-card rounded-xl px-8 py-4 flex-shrink-0"
+                    className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl px-10 py-6 flex-shrink-0 transition-all hover:bg-white/10"
                     whileHover={{ scale: 1.05, y: -4 }}
                   >
-                    <span className="text-sm font-bold tracking-wide" style={{ color: "hsl(var(--muted-foreground))" }}>
+                    <span className="text-sm font-black uppercase tracking-[0.3em] text-white">
                       {name}
                     </span>
                   </motion.div>

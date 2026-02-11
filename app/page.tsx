@@ -20,9 +20,9 @@ export default function Home() {
       <Header />
       <main>
         <HeroBanner />
-        <ServicesSection />
         <StatsSection />
         <ProcessSection />
+        <ServicesSection />
         <TechStackSection />
         <ProfilesSection />
         <TestimonialsSection />

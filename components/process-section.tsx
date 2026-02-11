@@ -35,7 +35,23 @@ export default function ProcessSection() {
   const { ref, isInView } = useInView(0.1)
 
   return (
-    <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
+    <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-teal-50/50">
+      {/* Elegant background graphics */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Gradient orbs */}
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-green-500/10 to-cyan-500/10 rounded-full blur-3xl" />
+
+        {/* Geometric grid pattern */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="process-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="currentColor" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#process-grid)" />
+        </svg>
+      </div>
       <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
         {/* Section header */}
         <header className="mb-24 lg:mb-32">
@@ -47,7 +63,7 @@ export default function ProcessSection() {
             className="flex flex-col items-center text-center"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 backdrop-blur-sm border border-border/40 mb-8">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
               <span className="text-[10px] uppercase tracking-[0.3em] font-black text-muted-foreground">
                 Operational Framework
               </span>
@@ -65,7 +81,7 @@ export default function ProcessSection() {
 
         <div className="relative">
           {/* Connection line */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-px" style={{ backgroundColor: "hsl(var(--border))" }} />
+          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, idx) => {
@@ -80,24 +96,23 @@ export default function ProcessSection() {
                 >
                   {/* Step number */}
                   <div
-                    className="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white z-10"
-                    style={{ backgroundColor: step.color }}
+                    className="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold bg-emerald-600 text-white z-10"
                   >
                     {idx + 1}
                   </div>
 
-                  <div className="frost-card rounded-2xl p-6 pt-8">
+                  <div className="bg-white/80 backdrop-blur-sm border border-black/5 rounded-2xl p-6 pt-8 hover:border-emerald-500/30 hover:shadow-lg transition-all duration-300">
                     <motion.div
                       className="w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center"
-                      style={{ backgroundColor: `${step.color}12` }}
+                      style={{ backgroundColor: `${step.color}15` }}
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     >
                       <Icon className="w-6 h-6" style={{ color: step.color }} />
                     </motion.div>
-                    <h3 className="text-base font-bold mb-2" style={{ color: "hsl(var(--foreground))" }}>
+                    <h3 className="text-base font-bold mb-2 text-black">
                       {step.title}
                     </h3>
-                    <p className="text-xs leading-relaxed" style={{ color: "hsl(var(--muted-foreground))" }}>
+                    <p className="text-xs leading-relaxed text-black/60">
                       {step.description}
                     </p>
                   </div>

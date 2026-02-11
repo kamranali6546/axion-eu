@@ -11,15 +11,32 @@ export default function ServicesSection() {
   const { ref, isInView } = useInView(0.05)
 
   return (
-    <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
-      {/* Section background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-5 bg-dev" />
+    <section
+      ref={ref}
+      className="relative py-32 lg:py-40 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30"
+    >
+      {/* Elegant background graphics */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Gradient orbs */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-green-500/10 to-yellow-500/10 rounded-full blur-3xl" />
+
+        {/* Geometric patterns */}
+        <svg className="absolute top-1/4 left-1/4 w-64 h-64 opacity-[0.03]" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" strokeWidth="0.5" />
+          <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" strokeWidth="0.5" />
+          <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" strokeWidth="0.5" />
+        </svg>
+
+        <svg className="absolute bottom-1/4 right-1/4 w-64 h-64 opacity-[0.03]" viewBox="0 0 200 200">
+          <rect x="50" y="50" width="100" height="100" fill="none" stroke="currentColor" strokeWidth="0.5" transform="rotate(45 100 100)" />
+          <rect x="65" y="65" width="70" height="70" fill="none" stroke="currentColor" strokeWidth="0.5" transform="rotate(45 100 100)" />
+        </svg>
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
         {/* Section header */}
-        <header className="mb-24 lg:mb-32">
+        <header className="mb-20 lg:mb-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -44,86 +61,85 @@ export default function ServicesSection() {
           </motion.div>
         </header>
 
-        {/* Service cards */}
-        <div className="flex flex-col gap-24 lg:gap-32">
+        {/* Service cards - 2x2 grid */}
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
           {services.map((service, idx) => (
             <motion.div
               key={service.slug}
-              initial={{ opacity: 0, y: 60 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, delay: idx * 0.15 }}
-              className={`grid lg:grid-cols-2 gap-10 lg:gap-16 items-center will-change-transform will-change-opacity ${idx % 2 === 1 ? "lg:direction-rtl" : ""
-                }`}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="group relative"
             >
-              {/* Text content */}
-              <div className={idx % 2 === 1 ? "lg:order-2" : ""}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center"
-                    style={{ backgroundColor: `${service.color}15` }}
-                  >
-                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: service.color }} />
-                  </div>
-                  <span
-                    className="text-xs font-bold tracking-widest uppercase"
-                    style={{ color: service.color }}
-                  >
-                    {service.title}
-                  </span>
-                </div>
+              <Link
+                href={`/services/${service.slug}`}
+                className="block relative rounded-[2.5rem] p-10 lg:p-12 bg-white/80 backdrop-blur-sm border border-black/5 hover:border-black/10 transition-all duration-500 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] overflow-hidden"
+              >
+                {/* Color accent bar */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-1.5"
+                  style={{ backgroundColor: service.color }}
+                />
 
-                <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-balance" style={{ color: "hsl(var(--foreground))" }}>
-                  {service.tagline}
-                </h3>
+                {/* Subtle gradient overlay */}
+                <div
+                  className="absolute inset-0 opacity-[0.02] group-hover:opacity-[0.04] transition-opacity"
+                  style={{ background: `radial-gradient(circle at top right, ${service.color}, transparent 70%)` }}
+                />
 
-                <p className="text-sm leading-relaxed mb-6" style={{ color: "hsl(var(--muted-foreground))" }}>
-                  {service.longDescription}
-                </p>
-
-                {/* Sub-services grid */}
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {service.subServices.map((sub) => (
-                    <Link
-                      key={sub.slug}
-                      href={`/services/${service.slug}/${sub.slug}`}
-                      className="group flex items-center gap-2 p-3 rounded-xl frost-card transition-all duration-300"
-                    >
+                <div className="relative z-10">
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-8">
+                    <div className="flex items-center gap-3">
                       <div
-                        className="w-1.5 h-1.5 rounded-full flex-shrink-0 transition-transform group-hover:scale-150"
-                        style={{ backgroundColor: service.color }}
-                      />
-                      <span className="text-xs font-medium" style={{ color: "hsl(var(--foreground))" }}>
+                        className="w-12 h-12 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110"
+                        style={{ backgroundColor: `${service.color}15` }}
+                      >
+                        <div className="w-4 h-4 rounded-full" style={{ backgroundColor: service.color }} />
+                      </div>
+                      <div>
+                        <span
+                          className="text-xs font-black tracking-[0.2em] uppercase block"
+                          style={{ color: service.color }}
+                        >
+                          {service.title}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="w-10 h-10 rounded-full border border-black/5 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all">
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-2xl lg:text-3xl font-black tracking-tighter uppercase mb-4 text-black leading-tight">
+                    {service.tagline}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-base leading-relaxed mb-6 text-black/60 font-medium line-clamp-3">
+                    {service.longDescription}
+                  </p>
+
+                  {/* Sub-services */}
+                  <div className="flex flex-wrap gap-2">
+                    {service.subServices.slice(0, 3).map((sub) => (
+                      <span
+                        key={sub.slug}
+                        className="px-3 py-1.5 rounded-lg bg-black/5 text-xs font-bold text-black/60"
+                      >
                         {sub.title}
                       </span>
-                    </Link>
-                  ))}
+                    ))}
+                    {service.subServices.length > 3 && (
+                      <span className="px-3 py-1.5 rounded-lg bg-black/5 text-xs font-bold text-black/60">
+                        +{service.subServices.length - 3} more
+                      </span>
+                    )}
+                  </div>
                 </div>
-
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 hover:gap-3"
-                  style={{ color: service.color }}
-                >
-                  Learn More <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-
-              {/* SVG illustration */}
-              <div className={`flex justify-center ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
-                <motion.div
-                  className="relative rounded-3xl p-8 frost-card will-change-transform"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  {/* Background accent */}
-                  <div
-                    className="absolute inset-0 rounded-3xl opacity-5"
-                    style={{ background: `radial-gradient(circle at center, ${service.color}, transparent)` }}
-                  />
-                  <ServiceSVGBySlug slug={service.slug} size={320} />
-                </motion.div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>
