@@ -614,7 +614,7 @@ export const teamMembers = [
     specialty: "B2B Lead Generation, Prospect Research & Outreach Campaigns",
     description:
       "Highly experienced B2B Lead Generation and Data Research Specialist with over 5 years of professional freelance experience. Successfully collaborated with 200+ Upwork clients and 300+ LinkedIn clients, delivering accurate prospect lists, verified contact data, and structured outreach campaigns. Specialized in building conversion-focused lead systems that help businesses reach decision-makers, generate appointments, and scale sales operations.",
-    image: "/team/faisal.jpg",
+    image: "/team/Faisal.jpg",
     skills: ["B2B Lead Generation", "Prospect Research", "Email Outreach", "LinkedIn Outreach", "CRM Management"],
     color: "#DB4437",
     tools: ["Sales Navigator", "Apollo", "Hunter", "Snov.io"],
@@ -626,7 +626,7 @@ export const teamMembers = [
     specialty: "E-Commerce Management, PPC Optimization & Data-Driven Growth",
     description:
       "Results-oriented E-Commerce Specialist with over 4 years of experience in eBay account management, product research, private label development, and PPC campaign optimization. Demonstrated success in increasing store sales by up to 65% and driving significant revenue growth through strategic listing optimization and data analytics. Skilled in managing multi-channel platforms while improving ROI through detailed market research and performance tracking.",
-    image: "/team/muntazir.jpg",
+    image: "/team/Muntazir.jpg",
     skills: ["Store Management", "Product Research", "PPC Strategy", "Listing Optimization", "Data Analytics"],
     color: "#0F9D58",
     tools: ["Shopify", "eBay Seller Hub", "Amazon Seller Central", "Google Analytics"],
