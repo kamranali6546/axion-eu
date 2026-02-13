@@ -19,7 +19,9 @@ export interface WhyChooseItem {
 }
 
 export interface Service {
+  slogan: string
   title: string
+  subHeading: string
   slug: string
   color: string
   tagline: string
@@ -34,10 +36,12 @@ export interface Service {
 
 export const services: Service[] = [
   {
+    slogan: "High-Performance",
     title: "Development",
+    subHeading: "For the Future",
     slug: "development",
     color: "#4285F4",
-    tagline: "Building the Future, One Line at a Time",
+    tagline: "Building the Future",
     heroSubtitle: "Full-Stack Development Agency",
     description:
       "We craft robust, scalable, and high-performance digital solutions tailored to your business needs using cutting-edge technologies.",
@@ -154,7 +158,9 @@ export const services: Service[] = [
     ],
   },
   {
-    title: "Marketing",
+    slogan: "Your Growth Partner in",
+    title: "Digital Marketing",
+    subHeading: "Strengthening Your Digital Reach",
     slug: "marketing",
     color: "#DB4437",
     tagline: "Strengthening Your Digital Reach",
@@ -320,7 +326,9 @@ export const services: Service[] = [
     ],
   },
   {
-    title: "Branding",
+    slogan: "Building",
+    title: "Brand",
+    subHeading: "That Endures",
     slug: "branding",
     color: "#F4B400",
     tagline: "Define Your Identity, Own Your Market",
@@ -440,7 +448,9 @@ export const services: Service[] = [
     ],
   },
   {
+    slogan: "Elevating",
     title: "E-Commerce",
+    subHeading: "To A Luxury Experience",
     slug: "e-commerce",
     color: "#0F9D58",
     tagline: "Sell Smarter, Scale Faster",

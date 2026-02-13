@@ -120,13 +120,13 @@ export default function HeroBanner() {
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                   className="will-change-transform will-change-opacity"
                 >
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] lg:leading-[0.85]">
-                    <span className="block text-foreground opacity-90">EMPOWERING</span>
-                    <span className="block" style={{ color: activeService.color }}>
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter leading-[0.9] lg:leading-[0.85]">
+                    <span className="block text-foreground opacity-90">{activeService.slogan.toUpperCase()}</span>
+                    <span className="block text-4xl md:text-5xl lg:text-6xl" style={{ color: activeService.color }}>
                       {activeService.title.toUpperCase()}
                     </span>
-                    <span className="block text-foreground/40 italic font-serif font-light text-4xl md:text-6xl lg:text-7xl tracking-normal mt-2">
-                      With Precision.
+                    <span className="block text-foreground/40 italic font-serif font-light text-2xl md:text-3xl lg:text-4xl tracking-normal mt-2">
+                      {activeService.subHeading.toUpperCase()}.
                     </span>
                   </h1>
                 </motion.div>
