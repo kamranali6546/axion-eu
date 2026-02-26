@@ -19,116 +19,51 @@ function ContactForm() {
     setTimeout(() => setSubmitted(false), 3000)
   }
 
-  const contactInfo = [
-    { icon: Mail, label: "Email Us", value: "hello@exion.pk", href: "mailto:hello@exion.pk", color: "#4285F4" },
-    { icon: Phone, label: "Call Us", value: "+92 300 1234567", href: "tel:+923001234567", color: "#DB4437" },
-    { icon: MapPin, label: "Visit Us", value: "Lahore, Punjab, Pakistan", href: "#", color: "#F4B400" },
-    { icon: Clock, label: "Working Hours", value: "Mon-Fri: 9AM - 6PM PKT", href: "#", color: "#0F9D58" },
-  ]
-
   return (
-    <section ref={ref} className="relative py-28 overflow-hidden bg-secondary/10">
+    <section ref={ref} className="relative py-32 overflow-hidden bg-background">
+      {/* Background Atmosphere */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-dev/5 blur-[100px] rounded-full" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/5 blur-[120px] rounded-full opacity-50" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-dev/5 blur-[100px] rounded-full" />
       </div>
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="grid lg:grid-cols-5 gap-12">
-          {/* Contact info */}
-          <motion.div
-            className="lg:col-span-2"
-            initial={{ opacity: 0, x: -60 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+
+      <div className="mx-auto max-w-4xl px-4 lg:px-8 relative z-10">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <h2 className="text-4xl lg:text-5xl font-black tracking-tighter uppercase mb-6">
+            SEND A <span className="text-primary italic font-serif lowercase tracking-normal">Message</span>
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-medium">
+            Have a specific vision in mind? Map out your requirements below and our architecture team will respond within one business cycle.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <form
+            onSubmit={handleSubmit}
+            className="relative p-8 md:p-12 rounded-[2.5rem] bg-card/30 backdrop-blur-xl border border-border/50 shadow-2xl overflow-hidden"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-balance" style={{ color: "hsl(var(--foreground))" }}>
-              {"Let's Start a Conversation"}
-            </h2>
-            <p className="text-sm leading-relaxed mb-10" style={{ color: "hsl(var(--muted-foreground))" }}>
-              Have a project in mind? We would love to hear about it. Fill out the form or reach out directly, and our team will get back to you within 24 hours.
-            </p>
+            {/* Form Glass Effect decoration */}
+            <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/10 blur-3xl rounded-full" />
 
-            <div className="flex flex-col gap-5">
-              {contactInfo.map((item, idx) => {
-                const CIcon = item.icon
-                return (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
-                    className="group flex items-start gap-4"
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.3 + idx * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <motion.div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{ backgroundColor: `${item.color}10` }}
-                      whileHover={{ scale: 1.15, rotate: 5 }}
-                    >
-                      <CIcon className="w-5 h-5" style={{ color: item.color }} />
-                    </motion.div>
-                    <div>
-                      <div className="text-xs font-semibold mb-0.5" style={{ color: "hsl(var(--muted-foreground))" }}>
-                        {item.label}
-                      </div>
-                      <div className="text-sm font-medium group-hover:translate-x-1 transition-transform" style={{ color: "hsl(var(--foreground))" }}>
-                        {item.value}
-                      </div>
-                    </div>
-                  </motion.a>
-                )
-              })}
-            </div>
-
-            {/* Service tags */}
-            <motion.div
-              className="mt-10 pt-8 border-t"
-              style={{ borderColor: "hsl(var(--border))" }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.7 }}
-            >
-              <p className="text-xs font-semibold mb-4 uppercase tracking-wider" style={{ color: "hsl(var(--muted-foreground))" }}>
-                Interested In
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {services.map((s) => (
-                  <motion.span
-                    key={s.slug}
-                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium frost-card"
-                    style={{ color: s.color }}
-                    whileHover={{ scale: 1.05, backgroundColor: `${s.color}10` }}
-                  >
-                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: s.color }} />
-                    {s.title}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Form */}
-          <motion.div
-            className="lg:col-span-3"
-            initial={{ opacity: 0, x: 60 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <form onSubmit={handleSubmit} className="frost-card rounded-2xl p-8">
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
-                {[
-                  { id: "name", label: "Full Name", type: "text", placeholder: "Your name" },
-                  { id: "email", label: "Email Address", type: "email", placeholder: "you@company.com" },
-                ].map((field) => (
-                  <motion.div
-                    key={field.id}
-                    animate={{
-                      scale: focusedField === field.id ? 1.01 : 1,
-                    }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <label htmlFor={field.id} className="block text-xs font-semibold mb-2" style={{ color: "hsl(var(--foreground))" }}>
-                      {field.label}
-                    </label>
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              {[
+                { id: "name", label: "Full Identity", type: "text", placeholder: "Your name" },
+                { id: "email", label: "Digital Path", type: "email", placeholder: "you@domain.com" },
+              ].map((field) => (
+                <div key={field.id} className="relative">
+                  <label htmlFor={field.id} className="block text-[10px] font-bold uppercase tracking-widest mb-3 ml-2 text-muted-foreground">
+                    {field.label}
+                  </label>
+                  <motion.div animate={{ scale: focusedField === field.id ? 1.01 : 1 }}>
                     <input
                       id={field.id}
                       type={field.type}
@@ -136,114 +71,100 @@ function ContactForm() {
                       placeholder={field.placeholder}
                       onFocus={() => setFocusedField(field.id)}
                       onBlur={() => setFocusedField(null)}
-                      className="w-full px-4 py-3 rounded-xl text-sm frost-input focus:outline-none focus:ring-2 focus:ring-[#4285F4]/30 transition-all"
-                      style={{ color: "hsl(var(--foreground))" }}
+                      className="w-full px-6 py-4 rounded-2xl text-sm frost-input focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all font-medium"
                     />
                   </motion.div>
-                ))}
-              </div>
+                </div>
+              ))}
+            </div>
 
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              <div className="relative">
+                <label htmlFor="phone" className="block text-[10px] font-bold uppercase tracking-widest mb-3 ml-2 text-muted-foreground">
+                  Phone Uplink
+                </label>
                 <motion.div animate={{ scale: focusedField === "phone" ? 1.01 : 1 }}>
-                  <label htmlFor="phone" className="block text-xs font-semibold mb-2" style={{ color: "hsl(var(--foreground))" }}>
-                    Phone Number
-                  </label>
                   <input
                     id="phone"
                     type="tel"
-                    placeholder="+92 300 1234567"
+                    placeholder="+92 000 0000000"
                     onFocus={() => setFocusedField("phone")}
                     onBlur={() => setFocusedField(null)}
-                    className="w-full px-4 py-3 rounded-xl text-sm frost-input focus:outline-none focus:ring-2 focus:ring-[#4285F4]/30 transition-all"
-                    style={{ color: "hsl(var(--foreground))" }}
+                    className="w-full px-6 py-4 rounded-2xl text-sm frost-input focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all font-medium"
                   />
                 </motion.div>
+              </div>
+              <div className="relative">
+                <label htmlFor="service" className="block text-[10px] font-bold uppercase tracking-widest mb-3 ml-2 text-muted-foreground">
+                  Project Logic
+                </label>
                 <motion.div animate={{ scale: focusedField === "service" ? 1.01 : 1 }}>
-                  <label htmlFor="service" className="block text-xs font-semibold mb-2" style={{ color: "hsl(var(--foreground))" }}>
-                    Service Interested In
-                  </label>
                   <select
                     id="service"
                     onFocus={() => setFocusedField("service")}
                     onBlur={() => setFocusedField(null)}
-                    className="w-full px-4 py-3 rounded-xl text-sm frost-input focus:outline-none focus:ring-2 focus:ring-[#4285F4]/30 transition-all appearance-none"
-                    style={{ color: "hsl(var(--foreground))" }}
+                    className="w-full px-6 py-4 rounded-2xl text-sm frost-input focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all appearance-none font-medium cursor-pointer"
                   >
-                    <option value="">Select a service</option>
+                    <option value="">Select a module</option>
                     {services.map((s) => (
                       <option key={s.slug} value={s.slug}>{s.title}</option>
                     ))}
                   </select>
                 </motion.div>
               </div>
+            </div>
 
-              <motion.div className="mb-6" animate={{ scale: focusedField === "subject" ? 1.01 : 1 }}>
-                <label htmlFor="subject" className="block text-xs font-semibold mb-2" style={{ color: "hsl(var(--foreground))" }}>
-                  Subject
-                </label>
-                <input
-                  id="subject"
-                  type="text"
-                  required
-                  placeholder="Project discussion"
-                  onFocus={() => setFocusedField("subject")}
-                  onBlur={() => setFocusedField(null)}
-                  className="w-full px-4 py-3 rounded-xl text-sm frost-input focus:outline-none focus:ring-2 focus:ring-[#4285F4]/30 transition-all"
-                  style={{ color: "hsl(var(--foreground))" }}
-                />
-              </motion.div>
-
-              <motion.div className="mb-6" animate={{ scale: focusedField === "message" ? 1.01 : 1 }}>
-                <label htmlFor="message" className="block text-xs font-semibold mb-2" style={{ color: "hsl(var(--foreground))" }}>
-                  Message
-                </label>
+            <div className="mb-10 relative">
+              <label htmlFor="message" className="block text-[10px] font-bold uppercase tracking-widest mb-3 ml-2 text-muted-foreground">
+                Data Payload
+              </label>
+              <motion.div animate={{ scale: focusedField === "message" ? 1.01 : 1 }}>
                 <textarea
                   id="message"
                   required
                   rows={5}
-                  placeholder="Tell us about your project..."
+                  placeholder="Tell us about your project infrastructure..."
                   onFocus={() => setFocusedField("message")}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full px-4 py-3 rounded-xl text-sm frost-input focus:outline-none focus:ring-2 focus:ring-[#4285F4]/30 transition-all resize-none"
-                  style={{ color: "hsl(var(--foreground))" }}
+                  className="w-full px-6 py-4 rounded-2xl text-sm frost-input focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all resize-none font-medium"
                 />
               </motion.div>
+            </div>
 
-              <motion.button
-                type="submit"
-                disabled={submitted}
-                className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-sm font-semibold text-white transition-all disabled:opacity-70"
-                style={{ background: submitted ? "#0F9D58" : "linear-gradient(135deg, #4285F4, #0F9D58)" }}
-                whileHover={{ scale: 1.02, boxShadow: "0 12px 40px rgba(66,133,244,0.3)" }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <AnimatePresence mode="wait">
-                  {submitted ? (
-                    <motion.span
-                      key="sent"
-                      className="flex items-center gap-2"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                    >
-                      <CheckCircle2 className="w-4 h-4" /> Message Sent Successfully!
-                    </motion.span>
-                  ) : (
-                    <motion.span
-                      key="send"
-                      className="flex items-center gap-2"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                    >
-                      Send Message <Send className="w-4 h-4" />
-                    </motion.span>
-                  )}
-                </AnimatePresence>
-              </motion.button>
-            </form>
-          </motion.div>
-        </div>
+            <motion.button
+              type="submit"
+              disabled={submitted}
+              className="w-full group relative overflow-hidden flex items-center justify-center gap-3 px-8 py-5 rounded-2xl text-sm font-black uppercase tracking-[0.2em] text-white transition-all disabled:opacity-70 shadow-xl"
+              style={{ background: submitted ? "hsl(var(--primary))" : "linear-gradient(135deg, hsl(var(--foreground)), #333)" }}
+              whileHover={{ scale: 1.02, boxShadow: "0 20px 40px rgba(0,0,0,0.2)" }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <AnimatePresence mode="wait">
+                {submitted ? (
+                  <motion.span
+                    key="sent"
+                    className="flex items-center gap-2"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                  >
+                    <CheckCircle2 className="w-5 h-5" /> Transmission Successful
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="send"
+                    className="flex items-center gap-3"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                  >
+                    Deploy Request <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </motion.button>
+          </form>
+        </motion.div>
       </div>
     </section>
   )
@@ -395,6 +316,46 @@ export default function ContactPage() {
         </section>
 
         <ContactForm />
+
+        {/* Global Infrastructure Redesign */}
+        <section id="offices" className="py-24 bg-white relative overflow-hidden">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="text-center mb-16">
+              <span className="text-[10px] uppercase font-black tracking-[0.4em] text-primary/60 mb-4 block">Our Infrastructure</span>
+              <h2 className="text-4xl lg:text-5xl font-black tracking-tighter uppercase">Global <span className="text-black/10 italic font-serif tracking-normal lowercase">Hubs</span></h2>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { city: "Barcelona", country: "Spain", role: "HQ & Design Hub", phone: "+34 632 841 902", color: "#4285F4" },
+                { city: "Tbilisi", country: "Georgia", role: "European Logistics", phone: "+995 568 772744", color: "#DB4437" },
+                { city: "Lahore", country: "Pakistan", role: "Engineering Center", phone: "+92 300 1234567", color: "#F4B400" }
+              ].map((office, i) => (
+                <motion.div
+                  key={office.city}
+                  className="group relative p-8 rounded-[2rem] bg-slate-50 border border-slate-100 transition-all hover:bg-white hover:shadow-2xl hover:-translate-y-2"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <div className="absolute top-8 right-8 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: office.color }} />
+                  <span className="text-[10px] font-black tracking-[0.2em] text-muted-foreground uppercase mb-2 block">{office.role}</span>
+                  <h3 className="text-2xl font-black tracking-tight mb-1">{office.city}</h3>
+                  <p className="text-sm font-medium text-muted-foreground mb-6">{office.country}</p>
+
+                  <a
+                    href={`tel:${office.phone.replace(/\s/g, '')}`}
+                    className="inline-flex items-center gap-2 text-sm font-bold group-hover:text-primary transition-colors"
+                  >
+                    <Phone className="w-4 h-4" />
+                    {office.phone}
+                  </a>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
         <FAQSection />
       </main>
       <Footer />

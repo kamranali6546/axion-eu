@@ -17,18 +17,18 @@ export default function ServicesSection() {
     >
       {/* Elegant background graphics */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Gradient orbs */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-green-500/10 to-yellow-500/10 rounded-full blur-3xl" />
+        {/* Gradient orbs - Optimized with lower blur and opacity */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[80px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[80px]" />
 
         {/* Geometric patterns */}
-        <svg className="absolute top-1/4 left-1/4 w-64 h-64 opacity-[0.03]" viewBox="0 0 200 200">
+        <svg className="absolute top-1/4 left-1/4 w-64 h-64 opacity-[0.02]" viewBox="0 0 200 200">
           <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" strokeWidth="0.5" />
           <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" strokeWidth="0.5" />
           <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" strokeWidth="0.5" />
         </svg>
 
-        <svg className="absolute bottom-1/4 right-1/4 w-64 h-64 opacity-[0.03]" viewBox="0 0 200 200">
+        <svg className="absolute bottom-1/4 right-1/4 w-64 h-64 opacity-[0.02]" viewBox="0 0 200 200">
           <rect x="50" y="50" width="100" height="100" fill="none" stroke="currentColor" strokeWidth="0.5" transform="rotate(45 100 100)" />
           <rect x="65" y="65" width="70" height="70" fill="none" stroke="currentColor" strokeWidth="0.5" transform="rotate(45 100 100)" />
         </svg>
@@ -38,7 +38,7 @@ export default function ServicesSection() {
         {/* Section header */}
         <header className="mb-20 lg:mb-24">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
@@ -66,11 +66,11 @@ export default function ServicesSection() {
           {services.map((service, idx) => (
             <motion.div
               key={service.slug}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="group relative"
+              viewport={{ once: true, margin: "-10px" }}
+              transition={{ duration: 0.6, delay: idx * 0.05 }}
+              className="group relative will-change-[transform,opacity]"
             >
               <Link
                 href={`/services/${service.slug}`}

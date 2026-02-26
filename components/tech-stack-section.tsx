@@ -28,12 +28,12 @@ export default function TechStackSection() {
     >
       {/* Elegant background graphics */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Gradient orbs */}
-        <div className="absolute top-0 left-0 w-[700px] h-[700px] bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-tr from-yellow-500/10 to-amber-500/10 rounded-full blur-3xl" />
+        {/* Gradient orbs - Optimized with lower blur and opacity */}
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[80px]" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-orange-500/5 rounded-full blur-[80px]" />
 
         {/* Hexagon pattern */}
-        <svg className="absolute top-1/3 right-1/3 w-96 h-96 opacity-[0.02]" viewBox="0 0 200 200">
+        <svg className="absolute top-1/3 right-1/3 w-96 h-96 opacity-[0.01]" viewBox="0 0 200 200">
           <path d="M100 10 L170 50 L170 130 L100 170 L30 130 L30 50 Z" fill="none" stroke="currentColor" strokeWidth="0.5" />
           <path d="M100 30 L150 60 L150 120 L100 150 L50 120 L50 60 Z" fill="none" stroke="currentColor" strokeWidth="0.5" />
         </svg>
@@ -42,7 +42,7 @@ export default function TechStackSection() {
         {/* Section header */}
         <header className="mb-24 lg:mb-32">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
@@ -110,27 +110,24 @@ export default function TechStackSection() {
         </div>
 
         {/* Animated SVG circuit lines */}
-        <motion.div
-          className="mt-16 flex justify-center"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.5, duration: 1 }}
-        >
+        <div className="mt-16 flex justify-center">
           <svg width="600" height="100" viewBox="0 0 600 100" fill="none" className="w-full max-w-2xl">
             {/* Circuit lines */}
             <motion.path
               d="M0 50 L100 50 L130 20 L200 20 L230 50 L350 50 L380 80 L450 80 L480 50 L600 50"
               stroke="#f59e0b" strokeWidth="1.5" fill="none" opacity="0.3"
               initial={{ pathLength: 0 }}
-              animate={isInView ? { pathLength: 1 } : {}}
-              transition={{ duration: 3 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 2 }}
             />
             <motion.path
               d="M0 30 L80 30 L110 60 L180 60 L210 30 L320 30 L350 70 L430 70 L460 30 L600 30"
               stroke="#f59e0b" strokeWidth="1.5" fill="none" opacity="0.15"
               initial={{ pathLength: 0 }}
-              animate={isInView ? { pathLength: 1 } : {}}
-              transition={{ duration: 3, delay: 0.3 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 2, delay: 0.2 }}
             />
             {/* Dots on intersections */}
             {[130, 230, 380, 480].map((cx, i) => (
@@ -139,31 +136,39 @@ export default function TechStackSection() {
                 cx={cx} cy={[20, 50, 80, 50][i]} r="4"
                 fill="#f59e0b"
                 initial={{ scale: 0 }}
-                animate={isInView ? { scale: [0, 1.5, 1] } : {}}
-                transition={{ delay: 1 + i * 0.3, duration: 0.5 }}
+                whileInView={{ scale: [0, 1.5, 1] }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.8 + i * 0.2, duration: 0.5 }}
               />
             ))}
             {/* Flowing dot */}
             <motion.circle
               r="3" fill="#f59e0b"
-              animate={isInView ? {
+              initial={{ opacity: 0 }}
+              whileInView={{
+                opacity: 1,
                 cx: [0, 100, 130, 200, 230, 350, 380, 450, 480, 600],
                 cy: [50, 50, 20, 20, 50, 50, 80, 80, 50, 50],
-              } : {}}
-              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              }}
+              viewport={{ once: true }}
+              transition={{
+                cx: { duration: 4, repeat: Infinity, ease: "linear" },
+                cy: { duration: 4, repeat: Infinity, ease: "linear" },
+                opacity: { duration: 0.5 }
+              }}
             />
           </svg>
-        </motion.div>
+        </div>
       </div>
 
       <style jsx>{`
         @keyframes scroll {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
+          from { transform: translate3d(0, 0, 0); }
+          to { transform: translate3d(-50%, 0, 0); }
         }
         @keyframes scroll-reverse {
-          from { transform: translateX(-50%); }
-          to { transform: translateX(0); }
+          from { transform: translate3d(-50%, 0, 0); }
+          to { transform: translate3d(0, 0, 0); }
         }
       `}</style>
     </section>

@@ -105,10 +105,10 @@ export default function TestimonialsSection() {
           className="absolute inset-0"
           style={{ background: "linear-gradient(180deg, #ffffff 0%, #f5f8ff 50%, #ffffff 100%)" }}
         />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 blur-[120px] rounded-full opacity-60" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/5 blur-[100px] rounded-full opacity-40" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 blur-[80px] rounded-full opacity-60" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 blur-[80px] rounded-full opacity-40" />
         <motion.div
-          className="absolute top-1/4 -right-40 w-[500px] h-[500px] rounded-full opacity-[0.08]"
+          className="absolute top-1/4 -right-40 w-[400px] h-[400px] rounded-full opacity-[0.05]"
           style={{
             background: `radial-gradient(circle, ${active.color}, transparent)`,
             y: bgY,
@@ -120,7 +120,7 @@ export default function TestimonialsSection() {
         {/* Section header */}
         <header className="mb-24 lg:mb-32">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
@@ -165,7 +165,7 @@ export default function TestimonialsSection() {
                 animate="center"
                 exit="exit"
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full frost-card rounded-3xl p-8 lg:p-14 will-change-transform will-change-opacity"
+                className="w-full frost-card rounded-3xl p-8 lg:p-14 will-change-[transform,opacity]"
               >
                 {/* Metric badge */}
                 <motion.div
@@ -274,8 +274,9 @@ export default function TestimonialsSection() {
                     <motion.div
                       className="absolute inset-0 rounded-full"
                       style={{ border: `2px solid ${t.color}`, opacity: 0.3 }}
-                      layoutId="testimonialRing"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1.2, opacity: 0.3 }}
+                      transition={{ duration: 0.3 }}
                     />
                   )}
                 </button>

@@ -38,12 +38,12 @@ export default function ProcessSection() {
     <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-teal-50/50">
       {/* Elegant background graphics */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Gradient orbs */}
-        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-green-500/10 to-cyan-500/10 rounded-full blur-3xl" />
+        {/* Gradient orbs - Optimized with lower blur and opacity */}
+        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[80px]" />
+        <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[80px]" />
 
         {/* Geometric grid pattern */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
+        <svg className="absolute inset-0 w-full h-full opacity-[0.02]" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="process-grid" width="80" height="80" patternUnits="userSpaceOnUse">
               <path d="M 80 0 L 0 0 0 80" fill="none" stroke="currentColor" strokeWidth="0.5" />
@@ -56,7 +56,7 @@ export default function ProcessSection() {
         {/* Section header */}
         <header className="mb-24 lg:mb-32">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
@@ -89,10 +89,11 @@ export default function ProcessSection() {
               return (
                 <motion.div
                   key={step.title}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: idx * 0.15 }}
-                  className="relative text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-10%" }}
+                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  className="relative text-center will-change-[transform,opacity]"
                 >
                   {/* Step number */}
                   <div

@@ -14,7 +14,7 @@ const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
   display: 'swap',
-  preload: false, // Only preload primary font
+  preload: true,
 })
 
 export const metadata: Metadata = {

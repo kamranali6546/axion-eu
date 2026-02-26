@@ -14,11 +14,7 @@ export default function HeroBanner() {
   const [isChanging, setIsChanging] = useState(false)
 
   const nextSlide = useCallback(() => {
-    setIsChanging(true)
-    setTimeout(() => {
-      setActiveIndex((prev) => (prev + 1) % services.length)
-      setIsChanging(false)
-    }, 500)
+    setActiveIndex((prev) => (prev + 1) % services.length)
   }, [])
 
   useEffect(() => {
@@ -33,18 +29,25 @@ export default function HeroBanner() {
     <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden pt-20">
       {/* Dynamic Background with Parallax effect */}
       <div className="absolute inset-0 z-0">
-        <motion.div
-          className="absolute inset-0 transition-colors duration-1000 will-change-auto"
-          style={{
-            background: `radial-gradient(circle at 70% 50%, ${activeService.color}15 0%, transparent 70%),
-                        radial-gradient(circle at 20% 40%, ${activeService.color}10 0%, transparent 50%)`,
-          }}
-        />
+        <AnimatePresence>
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0 will-change-opacity"
+            style={{
+              background: `radial-gradient(circle at 70% 50%, ${activeService.color}15 0%, transparent 70%),
+                          radial-gradient(circle at 20% 40%, ${activeService.color}10 0%, transparent 50%)`,
+            }}
+          />
+        </AnimatePresence>
 
         {/* Animated Mesh Gradient */}
         <div className="absolute inset-0 opacity-[0.4] pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full blur-[120px]" style={{ background: `${activeService.color}20` }} />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[150px]" style={{ background: `${activeService.color}15` }} />
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full blur-[80px]" style={{ background: `${activeService.color}20` }} />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[100px]" style={{ background: `${activeService.color}15` }} />
         </div>
 
         {/* Animated Grid */}
@@ -59,33 +62,18 @@ export default function HeroBanner() {
           </svg>
         </div>
 
-        {/* Cinematic Orbs */}
+        {/* Optimized Cinematic Orbs */}
         <motion.div
-          className="absolute w-[600px] h-[600px] blur-[120px] rounded-full opacity-25 pointer-events-none"
+          className="absolute w-[500px] h-[500px] blur-[80px] rounded-full opacity-20 pointer-events-none"
           animate={{
             x: [0, 50, -30, 0],
             y: [0, 30, 40, 0],
-            scale: [1, 1.1, 0.9, 1],
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           style={{
             background: `radial-gradient(circle, ${activeService.color}, transparent)`,
             top: "-10%",
             right: "-5%",
-          }}
-        />
-
-        <motion.div
-          className="absolute w-[400px] h-[400px] blur-[100px] rounded-full opacity-15 pointer-events-none"
-          animate={{
-            x: [0, -40, 20, 0],
-            y: [0, -20, -40, 0],
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-          style={{
-            background: `radial-gradient(circle, ${activeService.color}, transparent)`,
-            bottom: "10%",
-            left: "-5%",
           }}
         />
       </div>
@@ -178,19 +166,14 @@ export default function HeroBanner() {
                   key={service.slug}
                   onClick={() => setActiveIndex(idx)}
                   className={`group relative px-5 py-2.5 rounded-full text-sm font-bold transition-all border ${idx === activeIndex
-                    ? "border-transparent text-white"
+                    ? "border-transparent text-white shadow-lg"
                     : "border-border/40 text-muted-foreground hover:border-border hover:text-foreground"
                     }`}
+                  style={{
+                    backgroundColor: idx === activeIndex ? service.color : "transparent"
+                  }}
                 >
                   <span className="relative z-10">{service.title}</span>
-                  {idx === activeIndex && (
-                    <motion.div
-                      layoutId="bannerActiveIndicator"
-                      className="absolute inset-0 rounded-full"
-                      style={{ backgroundColor: service.color }}
-                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                    />
-                  )}
                   {idx !== activeIndex && (
                     <div className="absolute inset-0 rounded-full bg-secondary opacity-0 group-hover:opacity-100 transition-opacity" />
                   )}
@@ -207,7 +190,7 @@ export default function HeroBanner() {
                 <motion.div
                   key={activeIndex}
                   style={{ backgroundColor: activeService.color }}
-                  className="absolute inset-0 blur-[80px] rounded-full opacity-30 will-change-transform"
+                  className="absolute inset-0 blur-[60px] rounded-full opacity-30 will-change-transform"
                 />
               </AnimatePresence>
 

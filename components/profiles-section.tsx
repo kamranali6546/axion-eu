@@ -10,16 +10,32 @@ import Image from "next/image"
 
 function TeamCard({ member, idx }: { member: any; idx: number }) {
   const [hovered, setHovered] = useState(false)
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect()
+    mouseX.set(clientX - left)
+    mouseY.set(clientY - top)
+  }
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative w-full"
+      transition={{ duration: 0.8, delay: idx * 0.05, ease: [0.22, 1, 0.36, 1] }}
+      onMouseMove={handleMouseMove}
+      className="group relative w-full will-change-[transform,opacity]"
     >
-      <Link href="/profiles" className="block relative aspect-[3/4] overflow-hidden rounded-[2.5rem] bg-white/5 border border-white/10 transition-all duration-700 hover:border-primary/50">
+      <Link href="/profiles" className="block relative aspect-[3/4] overflow-hidden rounded-[2.5rem] bg-white/5 border border-white/10 transition-all duration-700 hover:border-primary/50"
+        style={{
+          // @ts-ignore
+          "--mouse-x": useSpring(mouseX, { stiffness: 500, damping: 50 }) as any,
+          // @ts-ignore
+          "--mouse-y": useSpring(mouseY, { stiffness: 500, damping: 50 }) as any,
+        }}
+      >
         <Image
           src={member.image || "/placeholder.svg"}
           alt={member.name}
@@ -78,12 +94,12 @@ export default function ProfilesSection() {
     <section ref={sectionRef} className="relative py-32 lg:py-48 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50/40">
       {/* Elegant Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Gradient orbs */}
-        <div className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-gradient-to-br from-blue-500/10 to-indigo-500/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-0 right-1/4 w-[800px] h-[800px] bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 blur-[150px] rounded-full" />
+        {/* Gradient orbs - Optimized with lower blur and opacity */}
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-500/5 blur-[100px] rounded-full" />
+        <div className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-cyan-500/5 blur-[120px] rounded-full" />
 
         {/* Animated Background Pattern */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.02]" xmlns="http://www.w3.org/2000/svg">
+        <svg className="absolute inset-0 w-full h-full opacity-[0.01]" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="profile-grid" width="60" height="60" patternUnits="userSpaceOnUse">
               <circle cx="30" cy="30" r="1" fill="currentColor" />
@@ -100,7 +116,7 @@ export default function ProfilesSection() {
         {/* Bold Cinematic Header */}
         <header className="mb-24 lg:mb-32">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}

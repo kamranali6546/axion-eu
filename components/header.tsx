@@ -44,9 +44,10 @@ const ServiceSidebarItem = React.memo(({
     {isActive && (
       <motion.div
         className="absolute left-0 right-0 md:right-auto bottom-0 md:bottom-auto md:top-1/2 md:-translate-y-1/2 h-0.5 md:h-8 w-full md:w-1 rounded-t-md md:rounded-r-md"
-        layoutId="activeIndicator"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
         style={{ backgroundColor: service.color }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        transition={{ duration: 0.2 }}
       />
     )}
     <div
@@ -132,7 +133,7 @@ export default function Header() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,box-shadow] duration-500 border-b ${scrolled
         ? "bg-background/80 backdrop-blur-md border-border/40 shadow-sm"
         : "bg-transparent border-transparent"
         }`}
@@ -150,10 +151,11 @@ export default function Header() {
             >
               <Image
                 src="/logo.png"
-                alt="Axion"
+                alt="Exion"
                 fill
                 className="object-contain"
                 priority
+                sizes="128px"
               />
             </motion.div>
           </Link>

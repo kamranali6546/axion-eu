@@ -12,12 +12,12 @@ export default function LoadingScreen() {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval)
-          setTimeout(() => setIsLoading(false), 400)
+          setTimeout(() => setIsLoading(false), 200) // Reduced from 400ms
           return 100
         }
-        return prev + 2
+        return prev + 4 // Increased from 2
       })
-    }, 30)
+    }, 20) // Reduced from 30ms
     return () => clearInterval(interval)
   }, [])
 
@@ -91,7 +91,7 @@ export default function LoadingScreen() {
           {/* Logo */}
           <motion.img
             src="/logo.png"
-            alt="Exion.pk"
+            alt="Exion Technologies"
             className="h-12 object-contain mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

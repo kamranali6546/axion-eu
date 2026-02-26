@@ -1,6 +1,6 @@
-# Axion Technologies 🚀
+# Exion Technologies 🚀
 
-A high-end, cinematic, and professional digital experience built with the latest web technologies. Axion Technologies delivers modern, responsive, and high-performance IT solutions tailored for digital-first businesses.
+A high-end, cinematic, and professional digital experience built with the latest web technologies. Exion Technologies delivers modern, responsive, and high-performance IT solutions tailored for digital-first businesses.
 
 ## ✨ Key Features
 
@@ -28,8 +28,8 @@ Follow these steps to set up the project locally:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/kamranali6546/axion-eu.git
-   cd axion-eu
+   git clone https://github.com/kamranali6546/exion-eu.git
+   cd exion-eu
    ```
 
 2. **Install dependencies**:
@@ -60,8 +60,8 @@ Follow these steps to set up the project locally:
 
 ## 🤝 Contribution
 
-Axion Technologies is built on a foundation of excellence. For major changes, please open an issue first to discuss what you would like to change.
+Exion Technologies is built on a foundation of excellence. For major changes, please open an issue first to discuss what you would like to change.
 
 ---
 
-Built with ❤️ by **Axion Technologies**
+Built with ❤️ by **Exion Technologies**

@@ -26,15 +26,15 @@ export default function Footer() {
       {/* Cinematic Background Typography */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
         <span className="text-[20vw] font-black tracking-tighter text-foreground/[0.03] leading-none uppercase">
-          Axion
+          Exion
         </span>
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
         {/* Upper Footer: Premium CTA */}
         <motion.div
-          className="relative mb-24 p-8 lg:p-16 rounded-[2.5rem] overflow-hidden border border-white/5 bg-secondary/20 backdrop-blur-3xl shadow-2xl"
-          initial={{ opacity: 0, y: 40 }}
+          className="relative mb-24 p-8 lg:p-16 rounded-[2.5rem] overflow-hidden border border-white/5 bg-secondary/20 backdrop-blur-xl shadow-2xl will-change-[transform,opacity]"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
@@ -68,7 +68,7 @@ export default function Footer() {
             <Link href="/" className="relative inline-block h-10 w-40">
               <Image
                 src="/logo.png"
-                alt="Axion Technologies"
+                alt="Exion Technologies"
                 width={100}
                 height={100}
                 className="object-contain"
@@ -125,9 +125,9 @@ export default function Footer() {
               Contact Detail
             </h3>
             <div className="flex flex-col gap-5">
-              <a href="mailto:info@exion.eu" className="group flex flex-col gap-1">
+              <a href="mailto:hello@exiontechnologies.eu" className="group flex flex-col gap-1">
                 <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">Email Us</span>
-                <span className="text-sm font-medium group-hover:text-primary transition-colors">info@exion.eu</span>
+                <span className="text-sm font-medium group-hover:text-primary transition-colors">hello@exiontechnologies.eu</span>
               </a>
               <a href="https://wa.me/34632841902" target="_blank" rel="noopener noreferrer" className="group flex flex-col gap-1">
                 <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">WhatsApp</span>
@@ -145,7 +145,7 @@ export default function Footer() {
         <div className="pt-10 border-t border-border flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8">
             <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-              &copy; {year} AXION TECHNOLOGIES. ALL RIGHTS RESERVED.
+              &copy; {year} EXION TECHNOLOGIES. ALL RIGHTS RESERVED.
             </p>
             {/* <div className="flex items-center gap-6">
               {["Privacy", "Terms", "Cookies"].map((link) => (

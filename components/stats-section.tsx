@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { useEffect, useRef } from "react"
+import { motion, useMotionValue, useTransform, animate } from "framer-motion"
 import { useInView } from "@/hooks/use-in-view"
 
 const stats = [
@@ -12,27 +12,28 @@ const stats = [
 ]
 
 function AnimatedCounter({ target, suffix, isInView }: { target: number; suffix: string; isInView: boolean }) {
-  const [count, setCount] = useState(0)
+  const count = useMotionValue(0)
+  const rounded = useTransform(count, (latest) => Math.floor(latest))
+  const ref = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
-    if (!isInView) return
-    let start = 0
-    const increment = target / 60
-    const timer = setInterval(() => {
-      start += increment
-      if (start >= target) {
-        setCount(target)
-        clearInterval(timer)
-      } else {
-        setCount(Math.floor(start))
-      }
-    }, 20)
-    return () => clearInterval(timer)
-  }, [isInView, target])
+    if (isInView) {
+      const controls = animate(count, target, {
+        duration: 2,
+        ease: [0.22, 1, 0.36, 1],
+        onUpdate: (latest) => {
+          if (ref.current) {
+            ref.current.textContent = Math.floor(latest).toString()
+          }
+        }
+      })
+      return controls.stop
+    }
+  }, [isInView, target, count])
 
   return (
-    <span>
-      {count}
+    <span className="tabular-nums">
+      <span ref={ref}>0</span>
       {suffix}
     </span>
   )
@@ -44,17 +45,18 @@ export default function StatsSection() {
   return (
     <section ref={ref} className="relative py-20 lg:py-32 overflow-hidden bg-slate-950">
       <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 0% 0%, #0f172a 0%, #020617 100%)" }} />
-      <div className="absolute inset-0 opacity-20" style={{ background: "radial-gradient(circle at 100% 100%, #1e293b 0%, transparent 50%)" }} />
+      <div className="absolute inset-0 opacity-10" style={{ background: "radial-gradient(circle at 100% 100%, #1e293b 0%, transparent 50%)" }} />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {stats.map((stat, idx) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 lg:p-8 text-center"
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.4, delay: idx * 0.05 }}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 lg:p-8 text-center will-change-[transform,opacity]"
             >
               <div
                 className="text-3xl lg:text-5xl font-extrabold mb-2 tabular-nums"
