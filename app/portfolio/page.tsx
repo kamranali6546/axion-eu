@@ -99,9 +99,6 @@ function ProjectGrid() {
               </Link>
             </div>
 
-            import Image from "next/image"
-
-            // ... inside ProjectGrid ...
             {/* Project Visual */}
             <div className="flex-1 w-full group relative">
               <motion.div
