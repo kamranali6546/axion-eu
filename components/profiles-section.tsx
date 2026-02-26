@@ -41,7 +41,8 @@ function TeamCard({ member, idx }: { member: any; idx: number }) {
           alt={member.name}
           fill
           className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          quality={70}
         />
 
         {/* Cinematic Gradient Overlay */}

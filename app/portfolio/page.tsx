@@ -4,6 +4,7 @@ import { useState, useRef } from "react"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, ExternalLink, Layers, ArrowUpRight, ChevronDown } from "lucide-react"
+import Image from "next/image"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { useInView } from "@/hooks/use-in-view"
@@ -98,6 +99,9 @@ function ProjectGrid() {
               </Link>
             </div>
 
+            import Image from "next/image"
+
+            // ... inside ProjectGrid ...
             {/* Project Visual */}
             <div className="flex-1 w-full group relative">
               <motion.div
@@ -105,10 +109,13 @@ function ProjectGrid() {
                 transition={{ duration: 0.5 }}
                 className="relative aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border border-white/10"
               >
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
+                  quality={70}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </motion.div>
