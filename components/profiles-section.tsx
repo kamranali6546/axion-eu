@@ -96,8 +96,8 @@ export default function ProfilesSection() {
       {/* Elegant Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Gradient orbs - Optimized with lower blur and opacity */}
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-500/5 blur-[100px] rounded-full" />
-        <div className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-cyan-500/5 blur-[120px] rounded-full" />
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-500/5 blur-3xl rounded-full" />
+        <div className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-cyan-500/5 blur-3xl rounded-full" />
 
         {/* Animated Background Pattern */}
         <svg className="absolute inset-0 w-full h-full opacity-[0.01]" xmlns="http://www.w3.org/2000/svg">

@@ -39,8 +39,8 @@ export default function ProcessSection() {
       {/* Elegant background graphics */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Gradient orbs - Optimized with lower blur and opacity */}
-        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[80px]" />
-        <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[80px]" />
+        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-2xl md:blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-2xl md:blur-3xl" />
 
         {/* Geometric grid pattern */}
         <svg className="absolute inset-0 w-full h-full opacity-[0.02]" xmlns="http://www.w3.org/2000/svg">

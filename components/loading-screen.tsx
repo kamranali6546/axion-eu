@@ -24,9 +24,9 @@ export default function LoadingScreen() {
         >
           {/* Static background to save CPU during boot */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-            <div className="absolute w-64 h-64 rounded-full blur-3xl mix-blend-multiply" style={{ background: "#4285F4", top: "10%", left: "15%" }} />
-            <div className="absolute w-48 h-48 rounded-full blur-3xl mix-blend-multiply" style={{ background: "#DB4437", bottom: "15%", right: "10%" }} />
-            <div className="absolute w-40 h-40 rounded-full blur-3xl mix-blend-multiply" style={{ background: "#F4B400", top: "50%", right: "30%" }} />
+            <div className="absolute w-64 h-64 rounded-full blur-3xl opacity-50" style={{ background: "#4285F4", top: "10%", left: "15%" }} />
+            <div className="absolute w-48 h-48 rounded-full blur-3xl opacity-50" style={{ background: "#DB4437", bottom: "15%", right: "10%" }} />
+            <div className="absolute w-40 h-40 rounded-full blur-3xl opacity-50" style={{ background: "#F4B400", top: "50%", right: "30%" }} />
           </div>
 
           {/* Logo - Simple fade up without infinite pulse rings */}

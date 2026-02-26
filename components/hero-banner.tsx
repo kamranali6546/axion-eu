@@ -59,8 +59,8 @@ export default function HeroBanner() {
 
         {/* Animated Mesh Gradient */}
         <div className="absolute inset-0 opacity-[0.4] pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full blur-[80px]" style={{ background: `${activeService.color}20` }} />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-[100px]" style={{ background: `${activeService.color}15` }} />
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full blur-2xl md:blur-3xl" style={{ background: `${activeService.color}20` }} />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full blur-2xl md:blur-3xl" style={{ background: `${activeService.color}15` }} />
         </div>
 
         {/* Animated Grid */}
@@ -77,7 +77,7 @@ export default function HeroBanner() {
 
         {/* Optimized Cinematic Orbs */}
         <motion.div
-          className="absolute w-[300px] md:w-[500px] h-[300px] md:h-[500px] blur-[80px] rounded-full opacity-20 pointer-events-none"
+          className="absolute w-[300px] md:w-[500px] h-[300px] md:h-[500px] blur-2xl md:blur-3xl rounded-full opacity-20 pointer-events-none"
           animate={{
             x: [0, 50, -30, 0],
             y: [0, 30, 40, 0],
@@ -203,7 +203,7 @@ export default function HeroBanner() {
                 <motion.div
                   key={activeIndex}
                   style={{ backgroundColor: activeService.color }}
-                  className="absolute inset-0 blur-[40px] md:blur-[60px] rounded-full opacity-30 will-change-transform"
+                  className="absolute inset-0 blur-xl md:blur-2xl rounded-full opacity-30 will-change-transform"
                 />
               </AnimatePresence>
 

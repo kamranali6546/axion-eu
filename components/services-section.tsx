@@ -18,8 +18,8 @@ export default function ServicesSection() {
       {/* Elegant background graphics */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Gradient orbs - Optimized with lower blur and opacity */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[80px]" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[80px]" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-2xl md:blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-2xl md:blur-3xl" />
 
         {/* Geometric patterns */}
         <svg className="absolute top-1/4 left-1/4 w-64 h-64 opacity-[0.02]" viewBox="0 0 200 200">

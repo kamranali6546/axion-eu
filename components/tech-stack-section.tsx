@@ -29,8 +29,8 @@ export default function TechStackSection() {
       {/* Elegant background graphics */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Gradient orbs - Optimized with lower blur and opacity */}
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[80px]" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-orange-500/5 rounded-full blur-[80px]" />
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-2xl md:blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-orange-500/5 rounded-full blur-2xl md:blur-3xl" />
 
         {/* Hexagon pattern */}
         <svg className="absolute top-1/3 right-1/3 w-96 h-96 opacity-[0.01]" viewBox="0 0 200 200">

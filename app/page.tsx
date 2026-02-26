@@ -5,13 +5,13 @@ import LoadingScreen from "@/components/loading-screen"
 import Header from "@/components/header"
 import HeroBanner from "@/components/hero-banner"
 
-const ServicesSection = dynamic(() => import("@/components/services-section"), { ssr: true })
-const StatsSection = dynamic(() => import("@/components/stats-section"), { ssr: true })
-const ProcessSection = dynamic(() => import("@/components/process-section"), { ssr: true })
-const TechStackSection = dynamic(() => import("@/components/tech-stack-section"), { ssr: false })
-const ProfilesSection = dynamic(() => import("@/components/profiles-section"), { ssr: false })
-const TestimonialsSection = dynamic(() => import("@/components/testimonials-section"), { ssr: false })
-const Footer = dynamic(() => import("@/components/footer"), { ssr: true })
+const ServicesSection = dynamic(() => import("@/components/services-section"))
+const StatsSection = dynamic(() => import("@/components/stats-section"))
+const ProcessSection = dynamic(() => import("@/components/process-section"))
+const TechStackSection = dynamic(() => import("@/components/tech-stack-section"))
+const ProfilesSection = dynamic(() => import("@/components/profiles-section"))
+const TestimonialsSection = dynamic(() => import("@/components/testimonials-section"))
+const Footer = dynamic(() => import("@/components/footer"))
 
 export default function Home() {
   return (

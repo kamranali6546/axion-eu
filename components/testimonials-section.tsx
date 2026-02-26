@@ -105,8 +105,8 @@ export default function TestimonialsSection() {
           className="absolute inset-0"
           style={{ background: "linear-gradient(180deg, #ffffff 0%, #f5f8ff 50%, #ffffff 100%)" }}
         />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 blur-[80px] rounded-full opacity-60" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 blur-[80px] rounded-full opacity-40" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 blur-2xl md:blur-3xl rounded-full opacity-60" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 blur-2xl md:blur-3xl rounded-full opacity-40" />
         <motion.div
           className="absolute top-1/4 -right-40 w-[400px] h-[400px] rounded-full opacity-[0.05]"
           style={{
