@@ -17,7 +17,7 @@ export default function LoadingScreen() {
         }
         return prev + 8 // Increased from 4 for faster completion
       })
-    }, 15) // Reduced from 20ms
+    }, 20) // Increased from 15ms for better mobile stability headroom
     return () => clearInterval(interval)
   }, [])
 
