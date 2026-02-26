@@ -11,16 +11,14 @@ export function DevelopmentSVG({ size = 280, className = "" }: { size?: number; 
         stroke="#4285F4" strokeWidth="3" fill="rgba(66,133,244,0.06)"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
-        transition={{ duration: 2, ease: "easeInOut" }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
       />
       {/* Screen glow */}
-      <motion.rect
+      <rect
         x="52" y="42" width="176" height="110" rx="6"
         fill="rgba(66,133,244,0.04)"
-        animate={{ opacity: [0.3, 0.8, 0.3] }}
-        transition={{ duration: 3, repeat: Infinity }}
       />
-      {/* Code lines */}
+      {/* Code lines - Static to save CPU */}
       {[0, 1, 2, 3, 4, 5].map((i) => (
         <motion.rect
           key={i}
@@ -31,18 +29,11 @@ export function DevelopmentSVG({ size = 280, className = "" }: { size?: number; 
           rx="2"
           fill={i % 2 === 0 ? "#4285F4" : i % 3 === 0 ? "#0F9D58" : "#DB4437"}
           initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: [0, 1, 1, 0.7] }}
-          transition={{ duration: 1.5, delay: i * 0.2, repeat: Infinity, repeatDelay: 3 }}
+          animate={{ scaleX: 1, opacity: 0.8 }}
+          transition={{ duration: 0.8, delay: i * 0.1 }}
           style={{ transformOrigin: "left" }}
         />
       ))}
-      {/* Cursor blink */}
-      <motion.rect
-        x="65" y="147" width="2" height="10"
-        fill="#4285F4"
-        animate={{ opacity: [1, 0, 1] }}
-        transition={{ duration: 1, repeat: Infinity }}
-      />
       {/* Monitor stand */}
       <motion.path
         d="M120 170 L140 195 L160 170"
@@ -51,29 +42,23 @@ export function DevelopmentSVG({ size = 280, className = "" }: { size?: number; 
         animate={{ pathLength: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
       />
-      <motion.rect
+      <rect
         x="110" y="195" width="60" height="6" rx="3"
         fill="#4285F4" opacity="0.3"
       />
-      {/* Floating elements */}
-      <motion.circle
+      {/* Floating element - CSS animation */}
+      <circle
         cx="240" cy="60" r="8"
         fill="rgba(66,133,244,0.2)" stroke="#4285F4" strokeWidth="1.5"
-        animate={{ y: [0, -10, 0], rotate: [0, 180, 360] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="animate-bounce"
+        style={{ animationDuration: '3s' }}
       />
-      <motion.path
-        d="M238 58 L240 62 L244 58"
-        stroke="#4285F4" strokeWidth="1.5" fill="none"
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      />
-      {/* Gear */}
+      {/* Gear - Static entrance */}
       <motion.g
-        animate={{ rotate: 360 }}
-        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        initial={{ rotate: -90, opacity: 0 }}
+        animate={{ rotate: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
         style={{ transformOrigin: "35px 240px" }}
-        className="will-change-transform"
       >
         <circle cx="35" cy="240" r="14" stroke="#4285F4" strokeWidth="2" fill="none" opacity="0.5" />
         <circle cx="35" cy="240" r="5" fill="#4285F4" opacity="0.3" />
@@ -87,22 +72,6 @@ export function DevelopmentSVG({ size = 280, className = "" }: { size?: number; 
           />
         ))}
       </motion.g>
-      {/* Binary stream */}
-      {["0", "1", "0", "1", "1", "0"].map((char, i) => (
-        <motion.text
-          key={i}
-          x={250}
-          y={120 + i * 18}
-          fill="#4285F4"
-          fontSize="10"
-          fontFamily="monospace"
-          opacity="0.3"
-          animate={{ opacity: [0, 0.5, 0], y: [120 + i * 18, 100 + i * 18] }}
-          transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
-        >
-          {char}
-        </motion.text>
-      ))}
     </svg>
   )
 }
@@ -116,21 +85,21 @@ export function MarketingSVG({ size = 280, className = "" }: { size?: number; cl
         stroke="#DB4437" strokeWidth="3" fill="rgba(219,68,55,0.08)"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
-        transition={{ duration: 2 }}
+        transition={{ duration: 1.5 }}
       />
-      <motion.rect
+      <rect
         x="40" y="115" width="25" height="50" rx="6"
         stroke="#DB4437" strokeWidth="2.5" fill="rgba(219,68,55,0.06)"
       />
-      {/* Sound waves */}
+      {/* Sound waves - Static entrance */}
       {[0, 1, 2].map((i) => (
         <motion.path
           key={i}
           d={`M148 ${130 - i * 15} Q${170 + i * 20} 140, 148 ${150 + i * 15}`}
           stroke="#DB4437" strokeWidth="2" fill="none"
           initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: [0, 1, 0], opacity: [0, 0.6, 0] }}
-          transition={{ duration: 2, delay: i * 0.4, repeat: Infinity }}
+          animate={{ pathLength: 1, opacity: 0.6 }}
+          transition={{ duration: 1, delay: 0.5 + i * 0.2 }}
         />
       ))}
       {/* Analytics chart */}
@@ -139,7 +108,7 @@ export function MarketingSVG({ size = 280, className = "" }: { size?: number; cl
         stroke="#DB4437" strokeWidth="2.5" fill="none" strokeLinecap="round"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
-        transition={{ duration: 2, delay: 1 }}
+        transition={{ duration: 1.5, delay: 0.5 }}
       />
       {/* Chart dots */}
       {[[180, 210], [200, 225], [220, 190], [240, 200], [260, 170]].map(([cx, cy], i) => (
@@ -148,45 +117,30 @@ export function MarketingSVG({ size = 280, className = "" }: { size?: number; cl
           cx={cx} cy={cy} r="4"
           fill="#DB4437"
           initial={{ scale: 0 }}
-          animate={{ scale: [0, 1.2, 1] }}
-          transition={{ delay: 1.5 + i * 0.2, duration: 0.4 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 1 + i * 0.1, duration: 0.4 }}
         />
       ))}
       {/* Target */}
-      <motion.g
-        animate={{ rotate: [0, 5, -5, 0] }}
-        transition={{ duration: 4, repeat: Infinity }}
-        style={{ transformOrigin: "230px 70px" }}
-        className="will-change-transform"
-      >
+      <g style={{ transformOrigin: "230px 70px" }}>
         <circle cx="230" cy="70" r="28" stroke="#DB4437" strokeWidth="2" fill="none" opacity="0.3" />
         <circle cx="230" cy="70" r="18" stroke="#DB4437" strokeWidth="2" fill="none" opacity="0.5" />
         <circle cx="230" cy="70" r="8" fill="#DB4437" opacity="0.6" />
-      </motion.g>
+      </g>
       {/* Arrow hitting target */}
       <motion.line
         x1="190" y1="95" x2="226" y2="73"
         stroke="#DB4437" strokeWidth="2"
         initial={{ pathLength: 0 }}
-        animate={{ pathLength: [0, 1] }}
-        transition={{ duration: 1, delay: 2, repeat: Infinity, repeatDelay: 3 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 0.8, delay: 1.5 }}
       />
-      {/* Floating hearts/likes */}
-      {[0, 1, 2].map((i) => (
-        <motion.g key={i}
-          animate={{ y: [0, -30], opacity: [0, 1, 0], x: [0, (i - 1) * 10] }}
-          transition={{ duration: 2.5, delay: i * 0.8, repeat: Infinity }}
-        >
-          <text x={80 + i * 25} y={100} fill="#DB4437" fontSize="14" opacity="0.6">
-            {"*"}
-          </text>
-        </motion.g>
-      ))}
       {/* Percentage rise */}
       <motion.text
         x="170" y="160" fill="#DB4437" fontSize="16" fontWeight="bold" opacity="0.4"
-        animate={{ opacity: [0.2, 0.6, 0.2] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 0.8, y: 0 }}
+        transition={{ duration: 0.8, delay: 1 }}
       >
         {"+"} 247%
       </motion.text>
@@ -199,26 +153,26 @@ export function BrandingSVG({ size = 280, className = "" }: { size?: number; cla
     <svg width={size} height={size} viewBox="0 0 280 280" fill="none" className={className}>
       {/* Pen/Brush */}
       <motion.g
-        animate={{ rotate: [-5, 5, -5] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        style={{ transformOrigin: "90px 160px" }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
       >
-        <motion.path
+        <path
           d="M70 200 L90 80 L110 200 Z"
           stroke="#F4B400" strokeWidth="2.5" fill="rgba(244,180,0,0.08)"
         />
         <rect x="82" y="72" width="16" height="30" rx="3" fill="rgba(244,180,0,0.3)" />
-        <motion.line
+        <line
           x1="90" y1="200" x2="90" y2="220"
           stroke="#F4B400" strokeWidth="3" strokeLinecap="round"
         />
       </motion.g>
       {/* Color palette circle */}
       <motion.g
+        initial={{ rotate: -90, opacity: 0 }}
+        animate={{ rotate: 0, opacity: 1 }}
+        transition={{ duration: 1.5 }}
         style={{ transformOrigin: "200px 100px" }}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="will-change-transform"
       >
         <circle cx="200" cy="100" r="40" stroke="#F4B400" strokeWidth="2" fill="none" opacity="0.3" />
         <circle cx="200" cy="60" r="10" fill="#4285F4" opacity="0.7" />
@@ -229,8 +183,9 @@ export function BrandingSVG({ size = 280, className = "" }: { size?: number; cla
       {/* Typography */}
       <motion.text
         x="150" y="200" fill="#F4B400" fontSize="40" fontWeight="bold" fontFamily="serif" opacity="0.15"
-        animate={{ opacity: [0.1, 0.25, 0.1] }}
-        transition={{ duration: 4, repeat: Infinity }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.3 }}
+        transition={{ duration: 1.5, delay: 0.5 }}
       >
         Aa
       </motion.text>
@@ -242,7 +197,7 @@ export function BrandingSVG({ size = 280, className = "" }: { size?: number; cla
           stroke="#F4B400" strokeWidth="1" opacity="0.2"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ delay: i * 0.2 }}
+          transition={{ delay: i * 0.1 }}
         />
       ))}
       {[0, 1].map((i) => (
@@ -252,34 +207,9 @@ export function BrandingSVG({ size = 280, className = "" }: { size?: number; cla
           stroke="#F4B400" strokeWidth="1" opacity="0.2"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ delay: 0.5 + i * 0.2 }}
+          transition={{ delay: 0.4 + i * 0.1 }}
         />
       ))}
-      {/* Star sparkle */}
-      <motion.g
-        animate={{ scale: [0.8, 1.2, 0.8], rotate: [0, 15, 0] }}
-        transition={{ duration: 3, repeat: Infinity }}
-        style={{ transformOrigin: "50px 60px" }}
-      >
-        <motion.path
-          d="M50 45 L53 55 L63 55 L55 61 L58 71 L50 65 L42 71 L45 61 L37 55 L47 55 Z"
-          fill="#F4B400" opacity="0.5"
-        />
-      </motion.g>
-      {/* Floating shapes */}
-      <motion.rect
-        x="240" y="180" width="20" height="20" rx="4"
-        stroke="#F4B400" strokeWidth="1.5" fill="none" opacity="0.3"
-        animate={{ rotate: [0, 90, 180, 270, 360], y: [0, -5, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-        style={{ transformOrigin: "250px 190px" }}
-      />
-      <motion.circle
-        cx="30" cy="140" r="8"
-        stroke="#F4B400" strokeWidth="1.5" fill="rgba(244,180,0,0.1)"
-        animate={{ scale: [1, 1.3, 1] }}
-        transition={{ duration: 2.5, repeat: Infinity }}
-      />
     </svg>
   )
 }
@@ -293,30 +223,18 @@ export function EcommerceSVG({ size = 280, className = "" }: { size?: number; cl
         stroke="#0F9D58" strokeWidth="3" fill="none" strokeLinecap="round"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
-        transition={{ duration: 2 }}
+        transition={{ duration: 1.5 }}
       />
       <motion.path
         d="M70 90 L240 90 L220 180 L90 180 Z"
         stroke="#0F9D58" strokeWidth="2.5" fill="rgba(15,157,88,0.06)"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 2, delay: 0.5 }}
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{ duration: 1.5, delay: 0.5 }}
       />
       {/* Cart wheels */}
-      <motion.circle
-        cx="110" cy="200" r="12" stroke="#0F9D58" strokeWidth="2.5" fill="none"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-        style={{ transformOrigin: "110px 200px" }}
-        className="will-change-transform"
-      />
-      <motion.circle
-        cx="200" cy="200" r="12" stroke="#0F9D58" strokeWidth="2.5" fill="none"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-        style={{ transformOrigin: "200px 200px" }}
-        className="will-change-transform"
-      />
+      <circle cx="110" cy="200" r="12" stroke="#0F9D58" strokeWidth="2.5" fill="none" />
+      <circle cx="200" cy="200" r="12" stroke="#0F9D58" strokeWidth="2.5" fill="none" />
       <circle cx="110" cy="200" r="3" fill="#0F9D58" opacity="0.5" />
       <circle cx="200" cy="200" r="3" fill="#0F9D58" opacity="0.5" />
       {/* Products in cart */}
@@ -326,57 +244,28 @@ export function EcommerceSVG({ size = 280, className = "" }: { size?: number; cl
           x={100 + i * 40} y={105} width="25" height="60" rx="4"
           fill="#0F9D58"
           opacity={0.1 + i * 0.08}
-          animate={{ y: [105, 100, 105] }}
-          transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
+          initial={{ y: 80, opacity: 0 }}
+          animate={{ y: 105, opacity: 0.5 }}
+          transition={{ duration: 0.8, delay: 1 + i * 0.2 }}
         />
       ))}
-      {/* Price tags */}
+      {/* Price tag */}
       <motion.g
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 2.5, repeat: Infinity }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, delay: 1 }}
       >
         <circle cx="50" cy="30" r="16" fill="rgba(15,157,88,0.1)" stroke="#0F9D58" strokeWidth="1.5" />
         <text x="42" y="35" fill="#0F9D58" fontSize="12" fontWeight="bold">{"$"}</text>
       </motion.g>
-      {/* Coins/money animation */}
-      {[0, 1, 2].map((i) => (
-        <motion.circle
-          key={`coin-${i}`}
-          cx={230 + i * 5}
-          cy={50}
-          r={8 - i * 2}
-          fill="rgba(15,157,88,0.15)"
-          stroke="#0F9D58"
-          strokeWidth="1"
-          animate={{
-            y: [0, -15 - i * 10, 0],
-            opacity: [0.3, 0.8, 0.3],
-          }}
-          transition={{ duration: 2, delay: i * 0.4, repeat: Infinity }}
-        />
-      ))}
       {/* Growth arrow */}
       <motion.path
         d="M230 250 L250 230 L260 240"
         stroke="#0F9D58" strokeWidth="2.5" fill="none" strokeLinecap="round"
-        animate={{ opacity: [0.3, 0.8, 0.3] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        initial={{ opacity: 0, pathLength: 0 }}
+        animate={{ opacity: 0.8, pathLength: 1 }}
+        transition={{ duration: 1, delay: 1.5 }}
       />
-      {/* Stars */}
-      {[0, 1, 2, 3, 4].map((i) => (
-        <motion.text
-          key={`star-${i}`}
-          x={95 + i * 20}
-          y="245"
-          fill="#0F9D58"
-          fontSize="12"
-          opacity="0.5"
-          animate={{ opacity: [0.3, 0.8, 0.3], scale: [1, 1.2, 1] }}
-          transition={{ duration: 1.5, delay: i * 0.2, repeat: Infinity }}
-        >
-          {"*"}
-        </motion.text>
-      ))}
     </svg>
   )
 }
